@@ -1,3 +1,0 @@
-grant codeBase "file:/Users/JeremyFu/Development/workspace/15440Lab2/src/" {
-    permission java.security.AllPermission;
-};
