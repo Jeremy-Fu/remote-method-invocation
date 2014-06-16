@@ -19,6 +19,10 @@ public class SayHello_Stub implements RemoteSayHello{
 	}
 
 	private String invokeMethod(String methodName, List<Object> args) {
+		InvokeMessage message = new InvokeMessage(ror, methodName, args);
+		String inetAddr = ror.getIP();
+		int port = ror.getPort();
+		Socket clietToServer = new Socket(inetAddr, port);
 		
 		return null;
 	}

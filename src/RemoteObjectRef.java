@@ -3,10 +3,10 @@ import java.lang.reflect.Constructor;
 
 
 public class RemoteObjectRef<T extends StubClass> implements Serializable{
-	String ipAddr;
-	int port;
-	String objectKey;
-	String remoteInterfaceName;
+	private String ipAddr;
+	private int port;
+	private String objectKey;
+	private String remoteInterfaceName;
 	
 	public RemoteObjectRef(String ip, int portNum, 
 			String key, String interfaceName) {
@@ -34,5 +34,13 @@ public class RemoteObjectRef<T extends StubClass> implements Serializable{
 			e.printStackTrace();
 		}
 		return stub;
+	}
+	
+	public String getIP() {
+		return this.ipAddr;
+	}
+	
+	public int getPort() {
+		return this.port;
 	}
 }
