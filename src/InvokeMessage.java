@@ -24,4 +24,12 @@ public class InvokeMessage implements Serializable{
 	public Object[] getArgs() {
 		return this.args;
 	}
+	
+	public Class<?>[] getArgsType() {
+		Class<?>[] argsType = new Class<?>[this.args.length];
+		for (int i = 0; i < this.args.length; i++) {
+			argsType[i] = this.args[i].getClass();
+		}
+		return argsType;
+	}
 }
