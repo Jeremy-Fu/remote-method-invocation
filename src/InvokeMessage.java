@@ -5,9 +5,9 @@ import java.util.List;
 public class InvokeMessage implements Serializable{
 	private RemoteObjectRef ror;
 	private String methodName;
-	private List<Object> args;
+	private Object[] args;
 	
-	public InvokeMessage(RemoteObjectRef ror, String methodName, List<Object> args) {
+	public InvokeMessage(RemoteObjectRef ror, String methodName, Object[] args) {
 		this.ror = ror;
 		this.methodName = methodName;
 		this.args = args;
@@ -21,7 +21,7 @@ public class InvokeMessage implements Serializable{
 		return this.methodName;
 	}
 	
-	public List<Object> getArgs() {
+	public Object[] getArgs() {
 		return this.args;
 	}
 }
