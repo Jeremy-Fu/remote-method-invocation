@@ -3,22 +3,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
+public class RemoteSayHello_Stub extends StubClass implements RemoteSayHello{
 
-public class SayHello_Stub implements RemoteSayHello{
-	private RemoteObjectRef ror;
-	
-	public SayHello_Stub(RemoteObjectRef remoteObject) {
-		ror = remoteObject;
+	public RemoteSayHello_Stub(RemoteObjectRef ref) {
+		super(ref);
 	}
-	
+
 	public String sayHello(String name) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		/* save all arguments into an array */
 		Object[] args = new Object[]{name};
 		String ret = null;
+		System.out.println(ror);
 		try {
 			ret = (String)invokeMethod(methodName, args);
 		} catch (UnknownHostException e) {
@@ -28,8 +25,20 @@ public class SayHello_Stub implements RemoteSayHello{
 		}
 		return ret;
 	}
-
-	private Object invokeMethod(String methodName, Object[] args) throws UnknownHostException, IOException {
+	
+	/**
+	 * Create a Method Invocation Message according to method name and its
+	 * arguments array, send message to proxy dispatcher and get reply
+	 * 
+	 * @param methodName 
+	 * @param args array of method's parameters
+	 * @return the return value of the method to invoke, or exception if it is
+	 * 		   thrown
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
+	private Object invokeMethod(String methodName, Object[] args) 
+					throws UnknownHostException, IOException {
 		InvokeMessage message = new InvokeMessage(ror, methodName, args);
 		
 		String inetAddr = ror.getIP();
@@ -42,16 +51,24 @@ public class SayHello_Stub implements RemoteSayHello{
 		
 		/* read return message from proxy dispatcher */
 		ObjectInputStream objectIn = new ObjectInputStream(clientToServer.getInputStream());
-		Object object = null;
+		RetMessage retMessage = null;
 		try {
-			object = objectIn.readObject();
+			retMessage = (RetMessage) objectIn.readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		objectOut.close();
 		objectIn.close();
 		clientToServer.close();
-		return object;
+		
+		//TODO check if exception flag is set in retMessage
+		if (retMessage.isException()) {
+			
+		} else {
+			
+		}
+		
+		return retMessage.getRet();
 	}
 
 }

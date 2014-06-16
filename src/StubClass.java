@@ -1,7 +1,9 @@
 
 public abstract class StubClass {
-	private RemoteObjectRef ror;
+	public RemoteObjectRef ror;
+	
 	public StubClass(RemoteObjectRef ref) {
-		ror = ref;
+		this.ror = ref;
 	}
+	
 }

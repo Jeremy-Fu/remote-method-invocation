@@ -3,10 +3,18 @@ import java.io.Serializable;
 
 public class RetMessage implements Serializable{
 	private Object retValue;
-	private boolean isException;
+	private boolean exceptionFlag;
 	
 	public RetMessage(Object retValue, boolean isException) {
 		this.retValue = retValue;
-		this.isException = isException;
+		this.exceptionFlag = isException;
+	}
+	
+	public boolean isException() {
+		return exceptionFlag;
+	}
+	
+	public Object getRet() {
+		return retValue;
 	}
 }

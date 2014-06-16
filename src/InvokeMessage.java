@@ -1,8 +1,10 @@
 import java.io.Serializable;
-import java.util.List;
-
 
 public class InvokeMessage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4488185998485866404L;
 	private RemoteObjectRef ror;
 	private String methodName;
 	private Object[] args;
@@ -13,7 +15,7 @@ public class InvokeMessage implements Serializable{
 		this.args = args;
 	}
 	
-	public RemoteObjectRef getROR() {
+	public RemoteObjectRef<?> getROR() {
 		return this.ror;
 	}
 	
