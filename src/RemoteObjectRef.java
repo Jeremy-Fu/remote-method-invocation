@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
 
-public class RemoteObjectRef<T extends StubClass> {
+public class RemoteObjectRef<T extends StubClass> implements Serializable{
 	String ipAddr;
 	int port;
 	String objectKey;
