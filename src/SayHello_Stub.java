@@ -22,7 +22,7 @@ public class SayHello_Stub implements RemoteSayHello{
 		InvokeMessage message = new InvokeMessage(ror, methodName, args);
 		String inetAddr = ror.getIP();
 		int port = ror.getPort();
-		Socket clietToServer = new Socket(inetAddr, port);
+
 		
 		return null;
 	}
