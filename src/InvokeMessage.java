@@ -27,6 +27,9 @@ public class InvokeMessage implements Serializable{
 		return this.args;
 	}
 	
+	/**@brief Obtain the class for each argument
+	 * @return The class array of arguments.
+	 */
 	public Class<?>[] getArgsType() {
 		Class<?>[] argsType = new Class<?>[this.args.length];
 		for (int i = 0; i < this.args.length; i++) {

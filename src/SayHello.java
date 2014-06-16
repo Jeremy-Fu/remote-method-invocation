@@ -6,5 +6,12 @@ public class SayHello implements RemoteSayHello{
 		String rst = "Hi, " + name;
 		return rst;
 	}
+	
+	/* Test method */
+	public void beHappy(String name) {
+		String rst = name + " should be happy!";
+		System.out.println(rst);
+		return;
+	}
 
 }

@@ -44,4 +44,8 @@ public class RemoteObjectRef<T extends StubClass> implements Serializable{
 	public int getPort() {
 		return this.port;
 	}
+	
+	public String getObjectKey() {
+		return this.objectKey;
+	}
 }

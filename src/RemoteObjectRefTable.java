@@ -3,18 +3,18 @@ import java.util.HashMap;
 
 public class RemoteObjectRefTable {
 	
-	private HashMap<RemoteObjectRef, Object> remoteObjectMap;
+	private HashMap<String, Object> remoteObjectMap;
 	
 	public RemoteObjectRefTable() {
-		this.remoteObjectMap = new HashMap<RemoteObjectRef, Object>();
+		this.remoteObjectMap = new HashMap<String, Object>();
 	}
 	
-	public void addObject(RemoteObjectRef ror, Object obj) {
-		this.remoteObjectMap.put(ror, obj);
+	public void addObject(String objectKey, Object obj) {
+		this.remoteObjectMap.put(objectKey, obj);
 		return;
 	}
 	
-	public Object getObject(RemoteObjectRef ror) {
-		return this.remoteObjectMap.get(ror);
+	public Object getObject(String objectKey) {
+		return this.remoteObjectMap.get(objectKey);
 	}
 }
