@@ -13,6 +13,8 @@ import message.Message;
 import message.MessageCode;
 import message.MessageOp;
 import message.MessageType;
+import message.RebindMessage;
+import message.UnbindMessage;
 import ror.RemoteObjectRef;
 
 
@@ -73,15 +75,23 @@ public class RegistryServer implements Runnable {
 						listMsg.setCode(MessageCode.OKAY);
 						listMsg.setServices((String[])tbl.keySet().toArray());
 					} else if (msg.getOp() == MessageOp.REBIND) {
-						
+						RebindMessage rebindMsg = (RebindMessage)msg;
+						RegistryServer.this.tbl.put(rebindMsg.getService(), rebindMsg.getROR());
+						rebindMsg.setType(MessageType.REPLY);
+						rebindMsg.setCode(MessageCode.OKAY);
 					} else if (msg.getOp() == MessageOp.UNBIND) {
-						
+						UnbindMessage unbindMsg = (UnbindMessage)msg;
+						RegistryServer.this.tbl.remove(unbindMsg.getService());
+						unbindMsg.setType(MessageType.REPLY);
+						unbindMsg.setCode(MessageCode.OKAY);
 					} else{
-						//TODO DENY
+						msg.setType(MessageType.REPLY);
+						msg.setCode(MessageCode.DENY);
 					}
 					
 				} else {
-					//TODO DENY
+					msg.setType(MessageType.REPLY);
+					msg.setCode(MessageCode.DENY);
 				}
 				
 				out.writeObject(msg);

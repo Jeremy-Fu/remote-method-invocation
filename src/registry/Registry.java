@@ -8,4 +8,5 @@ public interface Registry {
 	public void rebind(String serviceName, RemoteObjectRef<?> ror);
 	public String[] list();
 	public void unbind(String serviceName); 
+	
 }
