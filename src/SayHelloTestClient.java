@@ -1,7 +1,7 @@
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {
-		RemoteObjectRef<?> ror = new RemoteObjectRef("localhost", 55555, "hehe", "RemoteSayHello");
+		RemoteObjectRef<?> ror = new RemoteObjectRef("128.237.217.119", 1025, "SayHello-1", "RemoteSayHello");
 		RemoteSayHello_Stub stub = null;
 		
 		try {
@@ -10,7 +10,7 @@ public class SayHelloTestClient {
 			e.printStackTrace();
 		}
 		
-		String ret = stub.sayHello("MOTO!");
+		String ret = stub.sayHello("Kimwei");
 		System.out.println(ret);
 	}
 }

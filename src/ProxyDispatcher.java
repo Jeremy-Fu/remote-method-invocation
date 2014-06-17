@@ -74,7 +74,7 @@ public class ProxyDispatcher implements Runnable{
 			Object remoteObj = RORtbl.getObject(invokeReq.getROR().getObjectKey());
 			Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
 			
-			
+	
 			/* Invoke method */
 			Object[] args = invokeReq.getArgs();
 			Object returnValue = method.invoke(remoteObj, args);
