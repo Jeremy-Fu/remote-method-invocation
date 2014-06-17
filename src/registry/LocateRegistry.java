@@ -14,6 +14,13 @@ import message.MessageType;
 
 public class LocateRegistry { 
     
+	/**
+	 * Returns a registry stub of the specific host and port.
+	 * 
+	 * @param host host of the remote registry
+	 * @param port port on which the registry accepts requests
+	 * @return a stub of the registry
+	 */
 	public static Registry getRegistry(String host, int port) {
 		try{
 			Socket soc = new Socket(host, port);
