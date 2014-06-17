@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
+import java.util.Set;
 
 import message.ListMessage;
 import message.LookUpMessage;
@@ -73,7 +74,9 @@ public class RegistryServer implements Runnable {
 						ListMessage listMsg = (ListMessage)msg;
 						listMsg.setType(MessageType.REPLY);
 						listMsg.setCode(MessageCode.OKAY);
-						listMsg.setServices((String[])tbl.keySet().toArray());
+						Set<String> keySet = tbl.keySet();
+						String[] array = (String[])keySet.toArray(new String[keySet.size()]);
+						listMsg.setServices(array);
 					} else if (msg.getOp() == MessageOp.REBIND) {
 						RebindMessage rebindMsg = (RebindMessage)msg;
 						RegistryServer.this.tbl.put(rebindMsg.getService(), rebindMsg.getROR());
@@ -85,6 +88,7 @@ public class RegistryServer implements Runnable {
 						unbindMsg.setType(MessageType.REPLY);
 						unbindMsg.setCode(MessageCode.OKAY);
 					} else{
+						System.out.println("RegistryServer.RegistryServerHandler.run():\tRequest UNKNOWN");
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.DENY);
 					}
@@ -92,6 +96,7 @@ public class RegistryServer implements Runnable {
 				} else {
 					msg.setType(MessageType.REPLY);
 					msg.setCode(MessageCode.DENY);
+					System.out.println("RegistryServer.RegistryServerHandler.run():\tRequest UNKNOWN");
 				}
 				
 				out.writeObject(msg);

@@ -29,6 +29,7 @@ public interface Registry {
 	 * @param serviceName the name to associate with the remote reference
 	 * 		  on RMI registry
 	 * @param ror a reference to a remote object (usually a stub)
+	 * @return The string array of all services registered on RMIregistry
 	 */
 	public String[] list();
 	

@@ -24,9 +24,8 @@ public class LocateRegistry {
 	public static Registry getRegistry(String host, int port) {
 		try{
 			Socket soc = new Socket(host, port);
-			ObjectInputStream in = new ObjectInputStream(soc.getInputStream());
 			ObjectOutputStream out = new ObjectOutputStream(soc.getOutputStream());
-			//ask
+			ObjectInputStream in = new ObjectInputStream(soc.getInputStream());
 			HandshakeMessage handshkMsg = new HandshakeMessage();
 			out.writeObject(handshkMsg);
 			handshkMsg = (HandshakeMessage)in.readObject();

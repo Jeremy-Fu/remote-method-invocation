@@ -12,6 +12,8 @@ import java.net.UnknownHostException;
 
 import message.InvokeMessage;
 import message.RetMessage;
+import registry.LocateRegistry;
+import registry.Registry;
 import ror.RemoteInterface;
 import ror.RemoteObjectRef;
 import ror.RemoteObjectRefTable;
@@ -57,12 +59,22 @@ public class ProxyDispatcher implements Runnable{
 		try {
 			hostInetAddr = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(hostInetAddr);
-		int hostPort = 1025;		
-		RemoteObjectRef ror = new RemoteObjectRef(hostInetAddr, hostPort, objectKey, parseRemoteInterfaceName(initClass));
+
+		
+		//TODO parse port number
+		int hostPort = 1025;
+		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, hostPort, objectKey, parseRemoteInterfaceName(initClass));
+		Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+		System.out.println("Obtain a registry.");
+		if (registry == null) {
+			System.out.println("Cannot get the registry");
+			System.exit(0);
+		}
+		registry.rebind(this.serviceName, ror);
+		
+		
 		//TODO: Post ror to registry
 		this.RORtbl.addObject(objectKey, obj);
 		

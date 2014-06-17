@@ -9,6 +9,8 @@ import java.net.UnknownHostException;
 import message.ListMessage;
 import message.LookUpMessage;
 import message.Message;
+import message.RebindMessage;
+import message.UnbindMessage;
 import ror.RemoteObjectRef;
 
 public class Registry_Stub implements Registry{
@@ -45,15 +47,17 @@ public class Registry_Stub implements Registry{
 	}
 
 	@Override
-	public void rebind(String serviceName, RemoteObjectRef ror) {
-		// TODO Auto-generated method stub
-		
+	public void rebind(String serviceName, RemoteObjectRef<?> ror) {
+		RebindMessage rebindMsg = new RebindMessage(serviceName, ror);
+		rebindMsg = (RebindMessage) messageHandler(rebindMsg);
+		return;
 	}
 
 	@Override
 	public void unbind(String serviceName) {
-		// TODO Auto-generated method stub
-		
+		UnbindMessage unbindMsg = new UnbindMessage(serviceName);
+		unbindMsg = (UnbindMessage) messageHandler(unbindMsg);
+		return;
 	}
 	
 	
