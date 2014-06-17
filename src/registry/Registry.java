@@ -12,7 +12,7 @@ public interface Registry {
 	 * @param serviceName the name for the remote reference to look up
 	 * @return RemoteObjectRef a reference to a remote object, if found
 	 */
-	public RemoteObjectRef<?> lookup(String serviceName);
+	public RemoteObjectRef<?> lookup(String serviceName) throws Exception;
 	
 	/**
 	 * Returns an array of the names bound in this registry

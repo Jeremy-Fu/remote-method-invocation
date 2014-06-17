@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import message.ListMessage;
 import message.LookUpMessage;
 import message.Message;
+import message.MessageCode;
 import message.RebindMessage;
 import message.UnbindMessage;
 import ror.RemoteObjectRef;
@@ -33,9 +34,14 @@ public class Registry_Stub implements Registry{
 	}
 
 	@Override
-	public RemoteObjectRef<?> lookup(String serviceName) {
+	public RemoteObjectRef<?> lookup(String serviceName) throws Exception {
 		LookUpMessage lookupMsg = new LookUpMessage(serviceName);
 		lookupMsg = (LookUpMessage) messageHandler(lookupMsg);
+		if (lookupMsg.getCode() == MessageCode.DENY) {
+			//TODO:thrwo an exception
+			throw new Exception(serviceName + " not bound");
+		}
+		
 		return lookupMsg.getROR();
 	}
 	
