@@ -61,9 +61,15 @@ public class RegistryServer implements Runnable {
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.OKAY);
 					} else if (msg.getOp() == MessageOp.LOOKUP) {
-						
+						LookUpMessage lookUpMsg = (LookUpMessage)msg;
+						lookUpMsg.setType(MessageType.REPLY);
+						lookUpMsg.setCode(MessageCode.OKAY);
+						lookUpMsg.setROR(tbl.get(lookUpMsg.getService()));
 					} else if (msg.getOp() == MessageOp.LIST) {
-						
+						ListMessage listMsg = (ListMessage)msg;
+						listMsg.setType(MessageType.REPLY);
+						listMsg.setCode(MessageCode.OKAY);
+						listMsg.setServices((String[])tbl.keySet().toArray());
 					} else if (msg.getOp() == MessageOp.REBIND) {
 						
 					} else if (msg.getOp() == MessageOp.UNBIND) {
