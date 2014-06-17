@@ -1,3 +1,4 @@
+package ror;
 
 public abstract class StubClass {
 	public RemoteObjectRef ror;

@@ -1,3 +1,5 @@
+package ror;
+
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
@@ -23,7 +25,7 @@ public class RemoteObjectRef<T extends StubClass> implements Serializable{
 	 * @return the client-side proxy of remote object(stub)
 	 * @throws ClassNotFoundException
 	 */
-	 T localise() throws ClassNotFoundException {
+	 public T localise() throws ClassNotFoundException {
 		Class<T> c = (Class<T>) Class.forName(remoteInterfaceName + "_Stub");
 		Constructor<?> constructor = null;
 		

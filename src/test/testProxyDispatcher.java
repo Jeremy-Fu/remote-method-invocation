@@ -1,8 +1,15 @@
+package test;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import message.InvokeMessage;
+import message.RetMessage;
+import ror.RemoteObjectRef;
+import util.ProxyDispatcher;
 
 
 public class testProxyDispatcher {
@@ -27,7 +34,7 @@ public class testProxyDispatcher {
 			InvokeMessage invokeMsg = new InvokeMessage(ror, "sayHello", methodArgs);
 			out.writeObject(invokeMsg);
 			RetMessage retMsg = (RetMessage)in.readObject();
-			Object retValue = retMsg.getRetValue();
+			Object retValue = retMsg.getRet();
 			System.out.println("retValue type: " + retValue.getClass().getName());
 			System.out.println("retValue: " + retValue.toString());
 			

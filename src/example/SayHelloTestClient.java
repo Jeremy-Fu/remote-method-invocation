@@ -1,3 +1,6 @@
+package example;
+
+import ror.RemoteObjectRef;
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {

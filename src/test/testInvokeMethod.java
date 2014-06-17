@@ -1,6 +1,10 @@
+package test;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
+
+import example.SayHello;
 
 
 public class testInvokeMethod {
