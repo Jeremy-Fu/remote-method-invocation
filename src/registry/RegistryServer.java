@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
 
+import message.ListMessage;
+import message.LookUpMessage;
 import message.Message;
 import message.MessageCode;
 import message.MessageOp;

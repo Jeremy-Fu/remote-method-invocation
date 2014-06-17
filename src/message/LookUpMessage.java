@@ -1,9 +1,6 @@
-package registry;
+package message;
 
 import ror.RemoteObjectRef;
-import message.Message;
-import message.MessageOp;
-import message.MessageType;
 
 public class LookUpMessage extends Message {
 	private static final long serialVersionUID = -6239943451201484355L;

@@ -1,8 +1,5 @@
-package registry;
+package message;
 
-import message.Message;
-import message.MessageOp;
-import message.MessageType;
 
 public class ListMessage extends Message {
 	private static final long serialVersionUID = -7333353894123723849L;
