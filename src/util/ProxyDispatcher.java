@@ -27,6 +27,7 @@ public class ProxyDispatcher implements Runnable{
 	private int registryPort;
 	private String serviceName;
 	private String objectKey;
+	private int objectPort;
 	
 	public ProxyDispatcher (String[] args) {
 		this.RORtbl = new RemoteObjectRefTable();
@@ -35,6 +36,7 @@ public class ProxyDispatcher implements Runnable{
 		this.registryPort = Integer.parseInt(args[2]);
 		this.serviceName = args[3];
 		this.objectKey = args[4];
+		this.objectPort = Integer.parseInt(args[5]);
 	}
 	
 	@Override
@@ -62,10 +64,8 @@ public class ProxyDispatcher implements Runnable{
 			e.printStackTrace();
 		}
 
-		
-		//TODO parse port number
-		int hostPort = 1025;
-		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, hostPort, objectKey, parseRemoteInterfaceName(initClass));
+		System.out.println(hostInetAddr);
+;		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, objectPort, objectKey, parseRemoteInterfaceName(initClass));
 		Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 		System.out.println("Obtain a registry.");
 		if (registry == null) {
@@ -74,36 +74,37 @@ public class ProxyDispatcher implements Runnable{
 		}
 		registry.rebind(this.serviceName, ror);
 		
-		
 		//TODO: Post ror to registry
 		this.RORtbl.addObject(objectKey, obj);
 		
 		// create a socket.
 		try {
-			ServerSocket serverSoc = new ServerSocket(hostPort);
-			Socket socket = serverSoc.accept();
-			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+			ServerSocket serverSoc = new ServerSocket(objectPort);
+			while (true) {
+				Socket socket = serverSoc.accept();
+				ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+				ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			
-			/* Receive invocation request */
-			InvokeMessage invokeReq = (InvokeMessage) in.readObject();
+				/* Receive invocation request */
+				InvokeMessage invokeReq = (InvokeMessage) in.readObject();
 			
-			/* Obtain the method to be invoked */
-			Class<?>[] argsType = invokeReq.getArgsType();
-			Object remoteObj = RORtbl.getObject(invokeReq.getROR().getObjectKey());
-			Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
+				/* Obtain the method to be invoked */
+				Class<?>[] argsType = invokeReq.getArgsType();
+				Object remoteObj = RORtbl.getObject(invokeReq.getROR().getObjectKey());
+				Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
 			
 	
-			/* Invoke method */
-			Object[] args = invokeReq.getArgs();
-			Object returnValue = method.invoke(remoteObj, args);
-			//TODO: Handle exception as well.
-			RetMessage retMsg = new RetMessage(returnValue, false);
-			out.writeObject(retMsg);
+				/* Invoke method */
+				Object[] args = invokeReq.getArgs();
+				Object returnValue = method.invoke(remoteObj, args);
+				//TODO: Handle exception as well.
+				RetMessage retMsg = new RetMessage(returnValue, false);
+				out.writeObject(retMsg);
 			
-			in.close();
-			out.close();
-			socket.close();	
+				in.close();
+				out.close();
+				socket.close();	
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
