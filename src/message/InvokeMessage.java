@@ -1,6 +1,10 @@
+package message;
+
 import java.io.Serializable;
 
-public class InvokeMessage implements Serializable{
+import ror.RemoteObjectRef;
+
+public class InvokeMessage extends Message {
 	/**
 	 * 
 	 */
@@ -10,6 +14,7 @@ public class InvokeMessage implements Serializable{
 	private Object[] args;
 	
 	public InvokeMessage(RemoteObjectRef ror, String methodName, Object[] args) {
+		super(MessageType.QUERY, MessageOp.INVOKE);
 		this.ror = ror;
 		this.methodName = methodName;
 		this.args = args;

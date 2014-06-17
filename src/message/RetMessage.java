@@ -1,20 +1,17 @@
-import java.io.Serializable;
+package message;
 
 
-public class RetMessage implements Serializable{
+
+public class RetMessage extends Message{
+	
 	private static final long serialVersionUID = 1L;
 	private Object retValue;
-	private boolean exceptionFlag;
 	
 	public RetMessage(Object retValue, boolean isException) {
+		super(MessageType.REPLY, MessageOp.INVOKE);
 		this.retValue = retValue;
-		this.exceptionFlag = isException;
 	}
-	
-	public boolean isException() {
-		return exceptionFlag;
-	}
-	
+
 	public Object getRet() {
 		return retValue;
 	}

@@ -1,8 +1,16 @@
+package example;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import message.InvokeMessage;
+import message.MessageCode;
+import message.RetMessage;
+import ror.RemoteObjectRef;
+import ror.StubClass;
 
 public class RemoteSayHello_Stub extends StubClass implements RemoteSayHello{
 
@@ -62,7 +70,7 @@ public class RemoteSayHello_Stub extends StubClass implements RemoteSayHello{
 		clientToServer.close();
 		
 		//TODO check if exception flag is set in retMessage
-		if (retMessage.isException()) {
+		if (retMessage.getCode() == MessageCode.EXCEPTION) {
 			
 		} else {
 			
