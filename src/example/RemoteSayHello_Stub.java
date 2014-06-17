@@ -23,7 +23,6 @@ public class RemoteSayHello_Stub extends StubClass implements RemoteSayHello{
 		/* save all arguments into an array */
 		Object[] args = new Object[]{name};
 		String ret = null;
-		System.out.println(ror);
 		try {
 			ret = (String)invokeMethod(methodName, args);
 		} catch (UnknownHostException e) {

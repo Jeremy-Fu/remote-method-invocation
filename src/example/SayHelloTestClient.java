@@ -1,19 +1,35 @@
 package example;
 
+import registry.LocateRegistry;
+import registry.Registry;
 import ror.RemoteObjectRef;
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {
-		RemoteObjectRef<?> ror = new RemoteObjectRef("128.237.217.119", 1025, "SayHello-1", "RemoteSayHello");
-		RemoteSayHello_Stub stub = null;
+		Registry registry = LocateRegistry.getRegistry("128.237.217.119", 1099);
+		String[] services = registry.list();
+		System.out.println("Here are all the services: ");
+		for (String str : services) {
+			System.out.println(str);
+		}
+		System.out.println("Services are listed above");
 		
+		RemoteObjectRef<?> ror = null;
 		try {
-			stub = (RemoteSayHello_Stub) ror.localise();
+			ror = registry.lookup("SayHelloOnRegistr");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return;
+		}
+		
+		RemoteSayHello stub = null;
+		try {
+			stub = (RemoteSayHello) ror.localise();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		String ret = stub.sayHello("Kimwei");
+		String ret = stub.sayHello("nkn!");
 		System.out.println(ret);
 	}
 }
