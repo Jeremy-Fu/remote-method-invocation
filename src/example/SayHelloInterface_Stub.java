@@ -34,6 +34,25 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 		}
 		return ret;
 	}
+
+	@Override
+	public PersonInterface createPerson() {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		
+		/* save all arguments into an array */
+		Object[] args = new Object[0];
+		Class<?>[] argsType = new Class<?>[0];
+		PersonInterface ret = null;
+		try {
+			ret = (PersonInterface)super.invokeMethod(methodName, args, argsType);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ret;
+
+	}
 	
 	
 }
