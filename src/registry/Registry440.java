@@ -2,7 +2,7 @@ package registry;
 
 import ror.RemoteObjectRef;
 
-public interface Registry {
+public interface Registry440 {
 	
 	/**
 	 * Given the name of the service, looks up on the RMI registry

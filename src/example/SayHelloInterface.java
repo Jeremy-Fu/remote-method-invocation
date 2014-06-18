@@ -1,7 +1,7 @@
 package example;
 
-import ror.RemoteInterface;
+import ror.Remote440;
 
-public interface SayHelloInterface extends RemoteInterface{
+public interface SayHelloInterface extends Remote440{
 	public String sayHello(String name);
 }
