@@ -8,7 +8,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import message.HandshakeMessage;
-import message.MessageCode;
 import message.MessageOp;
 import message.MessageType;
 

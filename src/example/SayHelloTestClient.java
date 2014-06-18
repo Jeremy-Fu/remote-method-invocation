@@ -22,9 +22,9 @@ public class SayHelloTestClient {
 			return;
 		}
 		
-		RemoteSayHello stub = null;
+		SayHelloInterface stub = null;
 		try {
-			stub = (RemoteSayHello) ror.localise();
+			stub = (SayHelloInterface) ror.localise();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

@@ -1,9 +1,9 @@
 package ror;
 
 public abstract class StubClass {
-	public RemoteObjectRef ror;
+	public RemoteObjectRef<?> ror;
 	
-	public StubClass(RemoteObjectRef ref) {
+	public StubClass(RemoteObjectRef<?> ref) {
 		this.ror = ref;
 	}
 	

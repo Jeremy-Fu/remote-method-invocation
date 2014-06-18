@@ -1,6 +1,6 @@
 package example;
 
-public class SayHello implements RemoteSayHello{
+public class SayHello implements SayHelloInterface{
 
 	@Override
 	public String sayHello(String name) {

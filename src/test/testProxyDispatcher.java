@@ -29,7 +29,7 @@ public class testProxyDispatcher {
 			Socket soc = new Socket(args2pd[1], Integer.parseInt(args2pd[2]));
 			ObjectOutputStream out = new ObjectOutputStream(soc.getOutputStream());
 			ObjectInputStream in = new ObjectInputStream(soc.getInputStream());
-			RemoteObjectRef ror = new RemoteObjectRef(args2pd[1], Integer.parseInt(args2pd[2]), args2pd[4], "RemoteSayHello");
+			RemoteObjectRef<?> ror = new RemoteObjectRef(args2pd[1], Integer.parseInt(args2pd[2]), args2pd[4], "RemoteSayHello");
 			String[] methodArgs = new String[]{"GENG FU"};
 			InvokeMessage invokeMsg = new InvokeMessage(ror, "sayHello", methodArgs);
 			out.writeObject(invokeMsg);

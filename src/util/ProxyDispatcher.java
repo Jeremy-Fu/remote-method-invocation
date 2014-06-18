@@ -65,18 +65,15 @@ public class ProxyDispatcher implements Runnable{
 		}
 
 		System.out.println(hostInetAddr);
-;		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, objectPort, objectKey, parseRemoteInterfaceName(initClass));
+		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, objectPort, objectKey, parseRemoteInterfaceName(initClass));
 		Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-		System.out.println("Obtain a registry.");
 		if (registry == null) {
 			System.out.println("Cannot get the registry");
 			System.exit(0);
 		}
 		registry.rebind(this.serviceName, ror);
 		
-		//TODO: Post ror to registry
 		this.RORtbl.addObject(objectKey, obj);
-		
 		// create a socket.
 		try {
 			ServerSocket serverSoc = new ServerSocket(objectPort);

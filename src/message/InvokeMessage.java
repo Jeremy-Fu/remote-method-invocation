@@ -1,19 +1,16 @@
 package message;
 
-import java.io.Serializable;
 
 import ror.RemoteObjectRef;
 
 public class InvokeMessage extends Message {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4488185998485866404L;
-	private RemoteObjectRef ror;
+	private RemoteObjectRef<?> ror;
 	private String methodName;
 	private Object[] args;
 	
-	public InvokeMessage(RemoteObjectRef ror, String methodName, Object[] args) {
+	public InvokeMessage(RemoteObjectRef<?> ror, String methodName, Object[] args) {
 		super(MessageType.QUERY, MessageOp.INVOKE);
 		this.ror = ror;
 		this.methodName = methodName;

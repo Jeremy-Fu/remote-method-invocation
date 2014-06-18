@@ -1,5 +1,7 @@
 package application;
 
+import java.util.HashMap;
+
 import util.ProxyDispatcher;
 
 public class runProxyDispatcher {

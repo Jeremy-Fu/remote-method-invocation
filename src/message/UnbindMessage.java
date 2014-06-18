@@ -2,6 +2,7 @@ package message;
 
 public class UnbindMessage extends Message {
 
+	private static final long serialVersionUID = 705949575347961468L;
 	private String serviceName;
 	
 	public UnbindMessage(String serviceName) {
