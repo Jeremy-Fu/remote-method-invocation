@@ -21,7 +21,7 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 	
 		String ret = null;
 		try {
-			ret = (String)super.invokeMethod(methodName, new Object[0]);
+			ret = (String)super.invokeMethod(methodName, new Object[0], new Class<?>[0]);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -36,8 +36,9 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 		
 		/* save all arguments into an array */
 		Object[] args = new Object[]{name};
+		Class<?>[] argsType = new Class<?>[]{String.class};
 		try {
-			super.invokeMethod(methodName, args);
+			super.invokeMethod(methodName, args, argsType);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

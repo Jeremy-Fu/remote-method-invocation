@@ -19,9 +19,10 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 		
 		/* save all arguments into an array */
 		Object[] args = new Object[]{person};
+		Class<?>[] argsType = new Class<?>[]{PersonInterface.class};
 		String ret = null;
 		try {
-			ret = (String)super.invokeMethod(methodName, args);
+			ret = (String)super.invokeMethod(methodName, args, argsType);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

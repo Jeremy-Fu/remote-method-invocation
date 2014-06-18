@@ -14,13 +14,15 @@ public class InvokeMessage extends Message {
 	private RemoteObjectRef<?> ror;
 	private String methodName;
 	private Object[] args;
+	private Class<?>[] argsType;
 	
 
-	public InvokeMessage(RemoteObjectRef<?> ror, String methodName, Object[] args) {
+	public InvokeMessage(RemoteObjectRef<?> ror, String methodName, Object[] args, Class<?>[] argsType) {
 		super(MessageType.QUERY, MessageOp.INVOKE);
 		this.ror = ror;
 		this.methodName = methodName;
 		this.args = args;
+		this.argsType = argsType;
 	}
 	
 	/**
@@ -52,10 +54,6 @@ public class InvokeMessage extends Message {
 	 * @return The class array of arguments.
 	 */
 	public Class<?>[] getArgsType() {
-		Class<?>[] argsType = new Class<?>[this.args.length];
-		for (int i = 0; i < this.args.length; i++) {
-			argsType[i] = this.args[i].getClass();
-		}
-		return argsType;
+		return this.argsType;
 	}
 }

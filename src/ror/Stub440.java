@@ -28,9 +28,9 @@ public abstract class Stub440 {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
-	protected Object invokeMethod(String methodName, Object[] args) 
+	protected Object invokeMethod(String methodName, Object[] args, Class<?>[] argsType) 
 					throws UnknownHostException, IOException {
-		InvokeMessage message = new InvokeMessage(ror, methodName, args);
+		InvokeMessage message = new InvokeMessage(ror, methodName, args, argsType);
 		
 		String inetAddr = ror.getIP();
 		int port = ror.getPort();
