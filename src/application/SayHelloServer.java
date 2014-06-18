@@ -22,7 +22,7 @@ public class SayHelloServer {
 		RemoteObjectRef ror = UnicastRemoteObject440.exportObject(sayHello, 0);
 		String host = InetAddress.getLocalHost().getHostName();
 		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
-		registry.rebind("SayHelloOnRegistry" ,ror);
+		registry.rebind("SayHelloOnJeremyRegistry" ,ror);
 		System.out.println("Bind on registry");
 	}
 }

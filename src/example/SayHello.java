@@ -34,6 +34,7 @@ public class SayHello implements SayHelloInterface{
 	@Override
 	public PersonInterface createPerson() {
 		Person person = new Person();
+		person.setName("Jeremy");
 		RemoteObjectRef ror = null;
 		try {
 			ror = UnicastRemoteObject440.exportObject(person, 0);

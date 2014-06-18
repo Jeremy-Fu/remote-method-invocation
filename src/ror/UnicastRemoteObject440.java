@@ -12,7 +12,6 @@ public class UnicastRemoteObject440 {
 	
 	public static RemoteObjectRef exportObject(Remote440 remoteObject,int argPort) throws UnknownHostException {
 		String hostInetAddr = InetAddress.getLocalHost().getHostName();
-		System.out.println(hostInetAddr);
 		int listenPort;
 		ProxyDispatcher pd = null;
 		if (argPort == 0) {

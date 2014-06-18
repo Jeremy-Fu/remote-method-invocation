@@ -65,6 +65,7 @@ public class RegistryServer implements Runnable {
 					if (msg.getOp() == MessageOp.HANDSHAKE) {
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.OKAY);
+						System.out.println("RegistryServer.log: Receive a handshake message from " + soc.getInetAddress().getHostAddress());
 					} else if (msg.getOp() == MessageOp.LOOKUP) {
 						LookUpMessage lookUpMsg = (LookUpMessage)msg;
 						RemoteObjectRef<?> ror = tbl.get(lookUpMsg.getService());
@@ -75,7 +76,7 @@ public class RegistryServer implements Runnable {
 							lookUpMsg.setROR(ror);
 						}
 						lookUpMsg.setType(MessageType.REPLY);
-						
+						System.out.println("RegistryServer.log: Receive a lookup message from " + soc.getInetAddress().getHostAddress());
 					} else if (msg.getOp() == MessageOp.LIST) {
 						ListMessage listMsg = (ListMessage)msg;
 						listMsg.setType(MessageType.REPLY);
@@ -83,26 +84,29 @@ public class RegistryServer implements Runnable {
 						Set<String> keySet = tbl.keySet();
 						String[] array = (String[])keySet.toArray(new String[keySet.size()]);
 						listMsg.setServices(array);
+						System.out.println("RegistryServer.log: Receive a list message from " + soc.getInetAddress().getHostAddress());
 					} else if (msg.getOp() == MessageOp.REBIND) {
 						RebindMessage rebindMsg = (RebindMessage)msg;
 						RegistryServer.this.tbl.put(rebindMsg.getService(), rebindMsg.getROR());
 						rebindMsg.setType(MessageType.REPLY);
 						rebindMsg.setCode(MessageCode.OKAY);
+						System.out.println("RegistryServer.log: Receive a rebind message from " + soc.getInetAddress().getHostAddress());
 					} else if (msg.getOp() == MessageOp.UNBIND) {
 						UnbindMessage unbindMsg = (UnbindMessage)msg;
 						RegistryServer.this.tbl.remove(unbindMsg.getService());
 						unbindMsg.setType(MessageType.REPLY);
 						unbindMsg.setCode(MessageCode.OKAY);
+						System.out.println("log: Receive an unbind message from " + soc.getInetAddress().getHostAddress());
 					} else{
-						System.out.println("RegistryServer.RegistryServerHandler.run():\tRequest UNKNOWN");
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.DENY);
+						System.out.println("RegistryServer.log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
 					}
 					
 				} else {
 					msg.setType(MessageType.REPLY);
 					msg.setCode(MessageCode.DENY);
-					System.out.println("RegistryServer.RegistryServerHandler.run():\tRequest UNKNOWN");
+					System.out.println("log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
 				}
 				
 				out.writeObject(msg);

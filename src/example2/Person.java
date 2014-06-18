@@ -12,7 +12,6 @@ public class Person implements PersonInterface{
 
 	@Override
 	public void setName(String name) {
-		System.out.println("set name to" + name);
 		this.name = name;
 	}
 
