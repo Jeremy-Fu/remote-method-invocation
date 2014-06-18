@@ -38,7 +38,6 @@ public class Registry440_Stub implements Registry440{
 		LookUpMessage lookupMsg = new LookUpMessage(serviceName);
 		lookupMsg = (LookUpMessage) messageHandler(lookupMsg);
 		if (lookupMsg.getCode() == MessageCode.DENY) {
-			//TODO:thrwo an exception
 			throw new Exception(serviceName + " not bound");
 		}
 		
