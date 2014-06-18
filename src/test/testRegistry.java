@@ -2,10 +2,7 @@ package test;
 
 
 
-import registry.LocateRegistry;
-import registry.Registry;
 import registry.RegistryServer;
-import util.ProxyDispatcher;
 
 public class testRegistry {
 	public static void main(String[] args) {
@@ -29,23 +26,7 @@ public class testRegistry {
 		args2pd[3] = "SayHelloOnRegistry"; //Service name
 		args2pd[4] = "SayHello-1"; //Object key
 
-		ProxyDispatcher pd = new ProxyDispatcher(args2pd);
-		Thread td2 = new Thread(pd);
-		td2.start();
-		System.out.println("testRegistry.main():\tSleep 3s...");
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		Registry registry = LocateRegistry.getRegistry("128.237.217.119", 1099);
-		String[] services = registry.list();
-		int i = 0;
-		for (String service : services) {
-			i++;
-			System.out.println("service " + i + ":\t" + service);
-		}
+		//TODO: FINISH TEST
 		
 		
 		

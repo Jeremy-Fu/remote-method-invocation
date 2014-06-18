@@ -1,13 +1,13 @@
 package example;
 
 import example2.Person;
-import registry.LocateRegistry;
-import registry.Registry;
+import registry.LocateRegistry440;
+import registry.Registry440;
 import ror.RemoteObjectRef;
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {
-		Registry registry = LocateRegistry.getRegistry("128.237.217.119", 1099);
+		Registry440 registry = LocateRegistry440.getRegistry("128.237.217.119", 1099);
 		String[] services = registry.list();
 		System.out.println("Here are all the services: ");
 		for (String str : services) {

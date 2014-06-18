@@ -5,78 +5,31 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.Random;
 
 import message.InvokeMessage;
 import message.RetMessage;
-import registry.LocateRegistry;
-import registry.Registry;
-import ror.RemoteInterface;
-import ror.RemoteObjectRef;
+import ror.Remote440;
 import ror.RemoteObjectRefTable;
 
 
 public class ProxyDispatcher implements Runnable{
-	
+	private long objectKeyCounter;
 	private RemoteObjectRefTable RORtbl;
-	private String initClassName;
-	private String registryHost;
-	private int registryPort;
-	private String serviceName;
-	private String objectKey;
-	private int objectPort;
+	private int dispatcherPort;
 	
-	public ProxyDispatcher (String[] args) {
+	public ProxyDispatcher (int port) {
 		this.RORtbl = new RemoteObjectRefTable();
-		this.initClassName = args[0];
-		this.registryHost = args[1];
-		this.registryPort = Integer.parseInt(args[2]);
-		this.serviceName = args[3];
-		this.objectKey = args[4];
-		this.objectPort = Integer.parseInt(args[5]);
+		this.objectKeyCounter = (new Random()).nextLong();
+		this.dispatcherPort = port;
 	}
 	
 	@Override
 	public void run () {
-		Class<?> initClass = null;
 		try {
-			initClass = Class.forName(initClassName);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		Object obj = null;
-		try {
-			obj = initClass.newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		
-		String hostInetAddr = null;
-		try {
-			hostInetAddr = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println(hostInetAddr);
-		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, objectPort, objectKey, parseRemoteInterfaceName(initClass));
-		Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-		if (registry == null) {
-			System.out.println("Cannot get the registry");
-			System.exit(0);
-		}
-		registry.rebind(this.serviceName, ror);
-		
-		this.RORtbl.addObject(objectKey, obj);
-		// create a socket.
-		try {
-			ServerSocket serverSoc = new ServerSocket(objectPort);
+			ServerSocket serverSoc = new ServerSocket(dispatcherPort);
 			while (true) {
 				Socket socket = serverSoc.accept();
 				ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
@@ -103,10 +56,8 @@ public class ProxyDispatcher implements Runnable{
 				socket.close();	
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
@@ -121,25 +72,16 @@ public class ProxyDispatcher implements Runnable{
 		}
 	}
 	
-	public static String parseRemoteInterfaceName (Class<?> initClass) {
-		Class<?>[] interfaces = initClass.getInterfaces();
-		Class remoteInterfaceName = null;
-		boolean breakFlag = false;
-		for (int i = 0; i < interfaces.length; i++) {
-			Class<?>[] nestedInterfaces = interfaces[i].getInterfaces();
-			for (int j = 0; j < nestedInterfaces.length; j++) {
-				if (nestedInterfaces[j] == RemoteInterface.class) {
-					remoteInterfaceName = interfaces[i];
-					breakFlag = true;
-					break;
-				}
-			}
-			if (breakFlag) {
-				break;
-			}
-		}
-		return remoteInterfaceName.getName();
+	
+	
+	public String genObjectKey() {
+		String rst = String.format("%20d", this.objectKeyCounter);
+		this.objectKeyCounter++;
+		return rst;
 	}
 	
+	public void addRemoteObject(String objectKey, Remote440 remoteObj) {
+		this.RORtbl.addObject(objectKey, remoteObj);
+	}
 
 }

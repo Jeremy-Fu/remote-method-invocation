@@ -12,9 +12,9 @@ import message.InvokeMessage;
 import message.MessageCode;
 import message.RetMessage;
 import ror.RemoteObjectRef;
-import ror.StubClass;
+import ror.Stub440;
 
-public class SayHelloInterface_Stub extends StubClass implements SayHelloInterface{
+public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface{
 
 	public SayHelloInterface_Stub(RemoteObjectRef<?> ref) {
 		super(ref);

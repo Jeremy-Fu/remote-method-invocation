@@ -1,21 +1,24 @@
 package application;
 
-import java.util.HashMap;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import registry.LocateRegistry440;
+import registry.Registry440;
+import ror.RemoteObjectRef;
+import ror.UnicastRemoteObject440;
 import util.ProxyDispatcher;
+import example.SayHello;
 
 public class runProxyDispatcher {
-	public static void main(String[] args) throws InterruptedException {
-		String[] args2pd = new String[6];
-		args2pd[0] = "example.SayHello";
-		args2pd[1] = "128.237.217.119"; //Registry IP
-		args2pd[2] = "1099"; //Registry port
-		args2pd[3] = "SayHelloOnRegistry"; //Service Name;
-		args2pd[4] = "SayHello-1"; //Object key
-		args2pd[5] = "1025"; //Object port;
-
-		ProxyDispatcher pd = new ProxyDispatcher(args2pd);
-		Thread td = new Thread(pd);
-		td.start();
+	public static void main(String[] args) throws InterruptedException, UnknownHostException {
+		
+		SayHello remoteObj = new SayHello();
+		RemoteObjectRef ror = UnicastRemoteObject440.exportObject(remoteObj, 0);
+		String host = InetAddress.getLocalHost().getHostName();
+		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
+		registry.rebind("SayHelloOnRegistry" ,ror);
+		System.out.println("Bind on registry");
 	}
 }

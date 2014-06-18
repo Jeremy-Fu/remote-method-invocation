@@ -14,21 +14,21 @@ import message.RebindMessage;
 import message.UnbindMessage;
 import ror.RemoteObjectRef;
 
-public class Registry_Stub implements Registry{
+public class Registry440_Stub implements Registry440{
 	private String host;
 	private int port;
 	
-	public Registry_Stub(String host, int port) {
+	public Registry440_Stub(String host, int port) {
 		this.host = host;
 		this.port = port;
 	}
 	
-	public Registry_Stub() {
+	public Registry440_Stub() {
 		this.host = "localhost";
 		this.port = 1099;
 	}
 	
-	public Registry_Stub(int port) {
+	public Registry440_Stub(int port) {
 		this.host = "localhost";
 		this.port = 1099;
 	}

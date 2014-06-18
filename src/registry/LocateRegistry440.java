@@ -11,7 +11,7 @@ import message.HandshakeMessage;
 import message.MessageOp;
 import message.MessageType;
 
-public class LocateRegistry { 
+public class LocateRegistry440 { 
     
 	/**
 	 * Returns a registry stub of the specific host and port.
@@ -20,7 +20,7 @@ public class LocateRegistry {
 	 * @param port port on which the registry accepts requests
 	 * @return a stub of the registry
 	 */
-	public static Registry getRegistry(String host, int port) {
+	public static Registry440 getRegistry(String host, int port) {
 		try{
 			Socket soc = new Socket(host, port);
 			ObjectOutputStream out = new ObjectOutputStream(soc.getOutputStream());
@@ -30,7 +30,7 @@ public class LocateRegistry {
 			handshkMsg = (HandshakeMessage)in.readObject();
 			if (handshkMsg.getType() == MessageType.REPLY &&
 					handshkMsg.getOp() == MessageOp.HANDSHAKE) {
-				return new Registry_Stub(host, port);
+				return new Registry440_Stub(host, port);
 			} else {
 				return null;
 			}
