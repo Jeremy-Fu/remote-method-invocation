@@ -10,7 +10,7 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 
 	private static final long serialVersionUID = 7153111435712316422L;
 
-	public PersonInterface_Stub(RemoteObjectRef<?> ref) {
+	public PersonInterface_Stub(RemoteObjectRef ref) {
 		super(ref);
 		// TODO Auto-generated constructor stub
 	}

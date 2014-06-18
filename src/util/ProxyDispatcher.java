@@ -7,21 +7,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Hashtable;
 import java.util.Random;
 
 import message.InvokeMessage;
 import message.RetMessage;
 import ror.Remote440;
-import ror.RemoteObjectRefTable;
 
 
 public class ProxyDispatcher implements Runnable{
 	private long objectKeyCounter;
-	private RemoteObjectRefTable RORtbl;
+	private Hashtable<String, Object> rorTable;  //Object-Key -> RemoteObject
 	private int dispatcherPort;
 	
 	public ProxyDispatcher (int port) {
-		this.RORtbl = new RemoteObjectRefTable();
+		this.rorTable = new Hashtable<String, Object>();
 		this.objectKeyCounter = (new Random()).nextLong();
 		this.dispatcherPort = port;
 	}
@@ -38,14 +38,15 @@ public class ProxyDispatcher implements Runnable{
 			
 				/* Receive invocation request */
 				InvokeMessage invokeReq = (InvokeMessage) in.readObject();
-			
+				
+				/* Obtain the remote object to function */
+				Object remoteObj = rorTable.get(invokeReq.getROR().getObjectKey());
+				
 				/* Obtain the method to be invoked */
 				Class<?>[] argsType = invokeReq.getArgsType();
-				Object remoteObj = RORtbl.getObject(invokeReq.getROR().getObjectKey());
 				Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
-				System.out.println("ProxyDispatcher.run():\tInvoke..." + remoteObj.getClass().getName() + "." + method.getName()+"()");
+				System.out.println("ProxyDispatcher.run():\tInvoke...  " + remoteObj.getClass().getName() + "." + method.getName()+"()");
 			
-	
 				/* Invoke method */
 				Object[] args = invokeReq.getArgs();
 				Object returnValue = method.invoke(remoteObj, args);
@@ -83,7 +84,7 @@ public class ProxyDispatcher implements Runnable{
 	}
 	
 	public void addRemoteObject(String objectKey, Remote440 remoteObj) {
-		this.RORtbl.addObject(objectKey, remoteObj);
+		this.rorTable.put(objectKey, remoteObj);
 	}
 
 }

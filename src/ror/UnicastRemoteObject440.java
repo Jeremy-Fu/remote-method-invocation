@@ -10,7 +10,7 @@ public class UnicastRemoteObject440 {
 	private static int port = (new Random()).nextInt(65535 - 1024) + 1024;
 	private static ProxyDispatcher systemPd = null;
 	
-	public static RemoteObjectRef exportObject(Remote440 remoteObject,int argPort) throws UnknownHostException {
+	public static Remote440 exportObject(Remote440 remoteObject,int argPort) throws UnknownHostException {
 		String hostInetAddr = InetAddress.getLocalHost().getHostName();
 		int listenPort;
 		ProxyDispatcher pd = null;
@@ -30,15 +30,15 @@ public class UnicastRemoteObject440 {
 		}
 		
 		String objectKey = pd.genObjectKey();
-		RemoteObjectRef<?> ror = new RemoteObjectRef(hostInetAddr, listenPort, objectKey, parseRemoteInterfaceName(remoteObject.getClass()));
+		RemoteObjectRef ror = new RemoteObjectRef(hostInetAddr, listenPort, objectKey, parseRemoteInterfaceName(remoteObject.getClass()));
 		pd.addRemoteObject(objectKey, remoteObject);
-		return ror;
+		return (Remote440) ror.localise();
 		
 	}
 	
 	public static String parseRemoteInterfaceName (Class<?> initClass) {
 		Class<?>[] interfaces = initClass.getInterfaces();
-		Class remoteInterfaceName = null;
+		Class<?> remoteInterfaceName = null;
 		boolean breakFlag = false;
 		for (int i = 0; i < interfaces.length; i++) {
 			Class<?>[] nestedInterfaces = interfaces[i].getInterfaces();

@@ -11,14 +11,14 @@ import message.InvokeMessage;
 import message.MessageCode;
 import message.RetMessage;
 
-public abstract class Stub440 implements Serializable {
+public abstract class Stub440 implements Serializable, Remote440 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1552360315883773048L;
-	public RemoteObjectRef<?> ror;
+	public RemoteObjectRef ror;
 	
-	public Stub440(RemoteObjectRef<?> ref) {
+	public Stub440(RemoteObjectRef ref) {
 		this.ror = ref;
 	}
 	

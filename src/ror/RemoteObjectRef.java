@@ -5,7 +5,7 @@ import java.lang.reflect.Constructor;
 
 
 
-public class RemoteObjectRef<T extends Stub440> implements Serializable{
+public class RemoteObjectRef implements Serializable{
 	private static final long serialVersionUID = -3426999726929419480L;
 	private String ipAddr;
 	private int port;
@@ -26,14 +26,22 @@ public class RemoteObjectRef<T extends Stub440> implements Serializable{
 	 * @return the client-side proxy of remote object(stub)
 	 * @throws ClassNotFoundException
 	 */
-	 public T localise() throws ClassNotFoundException {
-		Class<T> c = (Class<T>) Class.forName(remoteInterfaceName + "_Stub");
+	 public Stub440 localise() {
+		 Class<? extends Stub440> c = null;
+		 try {
+			 c = (Class<? extends Stub440>) Class.forName(remoteInterfaceName + "_Stub").asSubclass(Stub440.class);
+		 } catch (ClassNotFoundException e) {
+			 //TODO: Download .class file from code base
+			 e.printStackTrace();
+			 System.exit(-1);
+		 }
+		
 		Constructor<?> constructor = null;
 		
-		T stub = null;
+		Stub440 stub = null;
 		try {
 			constructor = c.getConstructor(new Class[]{RemoteObjectRef.class});
-			stub = (T)constructor.newInstance(this);
+			stub = (Stub440)constructor.newInstance(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

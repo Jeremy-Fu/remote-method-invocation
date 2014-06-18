@@ -12,7 +12,7 @@ import message.Message;
 import message.MessageCode;
 import message.RebindMessage;
 import message.UnbindMessage;
-import ror.RemoteObjectRef;
+import ror.Remote440;
 
 public class Registry440_Stub implements Registry440{
 	private String host;
@@ -34,14 +34,14 @@ public class Registry440_Stub implements Registry440{
 	}
 
 	@Override
-	public RemoteObjectRef<?> lookup(String serviceName) throws Exception {
+	public Remote440 lookup(String serviceName) throws Exception {
 		LookUpMessage lookupMsg = new LookUpMessage(serviceName);
 		lookupMsg = (LookUpMessage) messageHandler(lookupMsg);
 		if (lookupMsg.getCode() == MessageCode.DENY) {
 			throw new Exception(serviceName + " not bound");
 		}
 		
-		return lookupMsg.getROR();
+		return lookupMsg.getStub();
 	}
 	
 	@Override
@@ -52,8 +52,8 @@ public class Registry440_Stub implements Registry440{
 	}
 
 	@Override
-	public void rebind(String serviceName, RemoteObjectRef<?> ror) {
-		RebindMessage rebindMsg = new RebindMessage(serviceName, ror);
+	public void rebind(String serviceName, Remote440 stub) {
+		RebindMessage rebindMsg = new RebindMessage(serviceName, stub);
 		rebindMsg = (RebindMessage) messageHandler(rebindMsg);
 		return;
 	}

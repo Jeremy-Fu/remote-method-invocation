@@ -14,7 +14,7 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 	 */
 	private static final long serialVersionUID = 3317375476953942584L;
 
-	public SayHelloInterface_Stub(RemoteObjectRef<?> ref) {
+	public SayHelloInterface_Stub(RemoteObjectRef ref) {
 		super(ref);
 	}
 

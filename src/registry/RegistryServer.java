@@ -16,12 +16,12 @@ import message.MessageOp;
 import message.MessageType;
 import message.RebindMessage;
 import message.UnbindMessage;
-import ror.RemoteObjectRef;
+import ror.Stub440;
 
 
 public class RegistryServer implements Runnable {
-	private Hashtable<String, RemoteObjectRef<?>> tbl = 
-			new Hashtable<String, RemoteObjectRef<?>>();
+	private Hashtable<String, Stub440> stubTbl = 
+			new Hashtable<String, Stub440>();
 	private int port;
 	
 	public RegistryServer() {
@@ -66,34 +66,42 @@ public class RegistryServer implements Runnable {
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.OKAY);
 						System.out.println("RegistryServer.log: Receive a handshake message from " + soc.getInetAddress().getHostAddress());
-					} else if (msg.getOp() == MessageOp.LOOKUP) {
+					} 
+					
+					else if (msg.getOp() == MessageOp.LOOKUP) {
 						LookUpMessage lookUpMsg = (LookUpMessage)msg;
-						RemoteObjectRef<?> ror = tbl.get(lookUpMsg.getService());
-						if (ror == null) {
+						Stub440 stub = stubTbl.get(lookUpMsg.getService());
+						if (stub == null) {
 							lookUpMsg.setCode(MessageCode.DENY);
 						} else {
 							lookUpMsg.setCode(MessageCode.OKAY);
-							lookUpMsg.setROR(ror);
+							lookUpMsg.setStub(stub);
 						}
 						lookUpMsg.setType(MessageType.REPLY);
 						System.out.println("RegistryServer.log: Receive a lookup message from " + soc.getInetAddress().getHostAddress());
-					} else if (msg.getOp() == MessageOp.LIST) {
+					} 
+					
+					else if (msg.getOp() == MessageOp.LIST) {
 						ListMessage listMsg = (ListMessage)msg;
 						listMsg.setType(MessageType.REPLY);
 						listMsg.setCode(MessageCode.OKAY);
-						Set<String> keySet = tbl.keySet();
+						Set<String> keySet = stubTbl.keySet();
 						String[] array = (String[])keySet.toArray(new String[keySet.size()]);
 						listMsg.setServices(array);
 						System.out.println("RegistryServer.log: Receive a list message from " + soc.getInetAddress().getHostAddress());
-					} else if (msg.getOp() == MessageOp.REBIND) {
+					} 
+					
+					else if (msg.getOp() == MessageOp.REBIND) {
 						RebindMessage rebindMsg = (RebindMessage)msg;
-						RegistryServer.this.tbl.put(rebindMsg.getService(), rebindMsg.getROR());
+						RegistryServer.this.stubTbl.put(rebindMsg.getService(), rebindMsg.getStub());
 						rebindMsg.setType(MessageType.REPLY);
 						rebindMsg.setCode(MessageCode.OKAY);
 						System.out.println("RegistryServer.log: Receive a rebind message from " + soc.getInetAddress().getHostAddress());
-					} else if (msg.getOp() == MessageOp.UNBIND) {
+					} 
+					
+					else if (msg.getOp() == MessageOp.UNBIND) {
 						UnbindMessage unbindMsg = (UnbindMessage)msg;
-						RegistryServer.this.tbl.remove(unbindMsg.getService());
+						RegistryServer.this.stubTbl.remove(unbindMsg.getService());
 						unbindMsg.setType(MessageType.REPLY);
 						unbindMsg.setCode(MessageCode.OKAY);
 						System.out.println("log: Receive an unbind message from " + soc.getInetAddress().getHostAddress());

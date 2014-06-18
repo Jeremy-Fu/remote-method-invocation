@@ -11,13 +11,13 @@ import ror.RemoteObjectRef;
 public class InvokeMessage extends Message {
 
 	private static final long serialVersionUID = 4488185998485866404L;
-	private RemoteObjectRef<?> ror;
+	private RemoteObjectRef ror;
 	private String methodName;
 	private Object[] args;
 	private Class<?>[] argsType;
 	
 
-	public InvokeMessage(RemoteObjectRef<?> ror, String methodName, Object[] args, Class<?>[] argsType) {
+	public InvokeMessage(RemoteObjectRef ror, String methodName, Object[] args, Class<?>[] argsType) {
 		super(MessageType.QUERY, MessageOp.INVOKE);
 		this.ror = ror;
 		this.methodName = methodName;
@@ -25,11 +25,12 @@ public class InvokeMessage extends Message {
 		this.argsType = argsType;
 	}
 	
+
 	/**
 	 *  Get the Remote object reference
 	 *  @return RemoteObjectRef a reference to a remote object
 	 */
-	public RemoteObjectRef<?> getROR() {
+	public RemoteObjectRef getROR() {
 		return this.ror;
 	}
 	

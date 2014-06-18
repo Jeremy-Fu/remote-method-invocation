@@ -1,6 +1,6 @@
 package registry;
 
-import ror.RemoteObjectRef;
+import ror.Remote440;
 
 public interface Registry440 {
 	
@@ -12,14 +12,14 @@ public interface Registry440 {
 	 * @param serviceName the name for the remote reference to look up
 	 * @return RemoteObjectRef a reference to a remote object, if found
 	 */
-	public RemoteObjectRef<?> lookup(String serviceName) throws Exception;
+	public Remote440 lookup(String serviceName) throws Exception;
 	
 	/**
 	 * Returns an array of the names bound in this registry
 	 * 
 	 * @return an array of the names bound in this registry
 	 */
-	public void rebind(String serviceName, RemoteObjectRef<?> ror);
+	public void rebind(String serviceName, Remote440 stub);
 	
 	/**
 	 * Replaces the binding for the specified serviceName in this registry with 

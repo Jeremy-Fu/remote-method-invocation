@@ -1,10 +1,11 @@
 package message;
 
-import ror.RemoteObjectRef;
+import ror.Remote440;
+import ror.Stub440;
 
 public class LookUpMessage extends Message {
 	private static final long serialVersionUID = -6239943451201484355L;
-	private RemoteObjectRef<?> ror;
+	private Stub440 stub;
 	private String serviceName;
 	
 	public LookUpMessage(String serviceName) {
@@ -12,12 +13,12 @@ public class LookUpMessage extends Message {
 		this.serviceName = serviceName;
 	}
 	
-	public void setROR(RemoteObjectRef<?> ref) {
-		this.ror = ref;
+	public void setStub(Remote440 obj) {
+		this.stub = (Stub440) obj;
 	}
 	
-	public RemoteObjectRef<?> getROR() {
-		return ror;
+	public Remote440 getStub() {
+		return this.stub;
 	}
 	
 	public String getService() {
