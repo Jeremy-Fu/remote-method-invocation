@@ -8,11 +8,12 @@ import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.RemoteObjectRef;
 import ror.UnicastRemoteObject440;
-import util.ProxyDispatcher;
-import example.SayHello;
 import example2.Person;
 
-public class runProxyDispatcher {
+/**
+ * This is an example to write a RMI application on the server side.
+ */
+public class ServerApp {
 	public static void main(String[] args) throws InterruptedException, UnknownHostException {
 		
 		//SayHello remoteObj = new SayHello();

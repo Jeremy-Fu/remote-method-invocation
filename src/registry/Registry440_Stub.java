@@ -66,7 +66,13 @@ public class Registry440_Stub implements Registry440{
 		return;
 	}
 	
-	
+	/**
+	 *  Communication module for registry stub to send
+	 *  and receive message between local and RMIregistry
+	 *  @param Message the message sent to RMIregistry
+	 *  @return Message the message received from RMIregistry
+	 *  which contains invocation result or exception.
+	 */
 	private Message messageHandler(Message msg) {
 		Message reply = null;
 		try {
