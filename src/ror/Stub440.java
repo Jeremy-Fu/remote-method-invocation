@@ -3,6 +3,7 @@ package ror;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -10,7 +11,7 @@ import message.InvokeMessage;
 import message.MessageCode;
 import message.RetMessage;
 
-public abstract class Stub440 {
+public abstract class Stub440 implements Serializable {
 	public RemoteObjectRef<?> ror;
 	
 	public Stub440(RemoteObjectRef<?> ref) {

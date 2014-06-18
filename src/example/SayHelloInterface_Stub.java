@@ -3,12 +3,16 @@ package example;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import example2.Person;
-import example2.PersonInterface;
 import ror.RemoteObjectRef;
 import ror.Stub440;
+import example2.PersonInterface;
 
 public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3317375476953942584L;
 
 	public SayHelloInterface_Stub(RemoteObjectRef<?> ref) {
 		super(ref);

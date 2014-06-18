@@ -4,6 +4,11 @@ import example2.PersonInterface;
 
 public class SayHello implements SayHelloInterface{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 649136614591494580L;
+
 	@Override
 	public String sayHello(PersonInterface person) {
 		//param person is an instance of PersonInterface_Stub

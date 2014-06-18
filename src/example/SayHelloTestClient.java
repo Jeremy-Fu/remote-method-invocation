@@ -1,10 +1,9 @@
 package example;
 
-import example2.Person;
-import example2.PersonInterface;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.RemoteObjectRef;
+import example2.PersonInterface;
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {

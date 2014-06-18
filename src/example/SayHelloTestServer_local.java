@@ -6,9 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import example2.Person;
 import message.InvokeMessage;
 import message.RetMessage;
+import example2.Person;
 
 
 public class SayHelloTestServer_local {
