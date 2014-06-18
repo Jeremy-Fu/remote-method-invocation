@@ -1,5 +1,6 @@
 package example;
 
+import example2.Person;
 import registry.LocateRegistry;
 import registry.Registry;
 import ror.RemoteObjectRef;
@@ -16,7 +17,7 @@ public class SayHelloTestClient {
 		
 		RemoteObjectRef<?> ror = null;
 		try {
-			ror = registry.lookup("SayHelloOnRegistr");
+			ror = registry.lookup("SayHelloOnRegistry");
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			return;
@@ -28,8 +29,9 @@ public class SayHelloTestClient {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		String ret = stub.sayHello("nkn!");
+		Person person = new Person();
+		person.setName("440");
+		String ret = stub.sayHello(person);
 		System.out.println(ret);
 	}
 }

@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import example2.Person;
 import message.InvokeMessage;
 import message.RetMessage;
 
@@ -24,7 +25,7 @@ public class SayHelloTestServer_local {
 			e.printStackTrace();
 		}
 		
-		RetMessage msgOut = new RetMessage(sayHello.sayHello("MOTO"), false);
+		RetMessage msgOut = new RetMessage(sayHello.sayHello(new Person()), false);
 		ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());
 		objOut.writeObject(msgOut);
 		objOut.close();

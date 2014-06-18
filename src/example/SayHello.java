@@ -1,10 +1,14 @@
 package example;
 
+import example2.Person;
+import example2.PersonInterface;
+
 public class SayHello implements SayHelloInterface{
 
 	@Override
-	public String sayHello(String name) {
-		String rst = "Hi, " + name;
+	public String sayHello(Person person) {
+		//param person is an instance of PersonInterface_Stub
+		String rst = "Hi, " + person.getName() ;
 		return rst;
 	}
 	

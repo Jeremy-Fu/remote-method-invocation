@@ -3,7 +3,6 @@ package ror;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
-
 public class RemoteObjectRef<T extends StubClass> implements Serializable{
 	private static final long serialVersionUID = -3426999726929419480L;
 	private String ipAddr;

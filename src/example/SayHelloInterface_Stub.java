@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import example2.Person;
+import example2.PersonInterface;
 import message.InvokeMessage;
 import message.MessageCode;
 import message.RetMessage;
@@ -18,10 +20,11 @@ public class SayHelloInterface_Stub extends StubClass implements SayHelloInterfa
 		super(ref);
 	}
 
-	public String sayHello(String name) {
+	public String sayHello(Person person) {
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		
 		/* save all arguments into an array */
-		Object[] args = new Object[]{name};
+		Object[] args = new Object[]{person};
 		String ret = null;
 		try {
 			ret = (String)invokeMethod(methodName, args);
