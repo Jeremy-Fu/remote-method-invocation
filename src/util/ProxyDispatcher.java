@@ -32,6 +32,7 @@ public class ProxyDispatcher implements Runnable{
 			ServerSocket serverSoc = new ServerSocket(dispatcherPort);
 			while (true) {
 				Socket socket = serverSoc.accept();
+				System.out.println("ProxyDispatcher.run():\tReceive an invocation request.");
 				ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 				ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			
@@ -42,6 +43,7 @@ public class ProxyDispatcher implements Runnable{
 				Class<?>[] argsType = invokeReq.getArgsType();
 				Object remoteObj = RORtbl.getObject(invokeReq.getROR().getObjectKey());
 				Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
+				System.out.println("ProxyDispatcher.run():\tInvoke..." + remoteObj.getClass().getName() + "." + method.getName());
 			
 	
 				/* Invoke method */

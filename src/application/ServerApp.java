@@ -25,7 +25,5 @@ public class ServerApp {
 		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
 		registry.rebind("SayHelloOnRegistry" ,ror);
 		System.out.println("Bind on registry");
-		
-		PersonInterface personStub = (PersonInterface) ror.localise();
 	}
 }
