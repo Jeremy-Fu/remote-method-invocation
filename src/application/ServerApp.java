@@ -10,12 +10,13 @@ import ror.RemoteObjectRef;
 import ror.UnicastRemoteObject440;
 import example.SayHello;
 import example2.Person;
+import example2.PersonInterface;
 
 /**
  * This is an example to write a RMI application on the server side.
  */
 public class ServerApp {
-	public static void main(String[] args) throws InterruptedException, UnknownHostException {
+	public static void main(String[] args) throws InterruptedException, UnknownHostException, ClassNotFoundException {
 		
 		//SayHello remoteObj = new SayHello();
 		SayHello sayHello = new SayHello();
@@ -24,5 +25,7 @@ public class ServerApp {
 		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
 		registry.rebind("SayHelloOnRegistry" ,ror);
 		System.out.println("Bind on registry");
+		
+		PersonInterface personStub = (PersonInterface) ror.localise();
 	}
 }

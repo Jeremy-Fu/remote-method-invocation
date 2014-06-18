@@ -52,5 +52,22 @@ public class SayHelloTestClient {
 		stub.setName("Andy");
 		String str = stub.getName();
 		System.out.println(str);
+		
+		Registry440 registry2 = LocateRegistry440.getRegistry("128.237.217.119", 1099);
+		RemoteObjectRef<?> ror2 = null;
+		try {
+			ror2 = registry2.lookup("SayHelloOnRegistry");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return;
+		}
+		SayHelloInterface sayHello = null;
+		try {
+			sayHello = (SayHelloInterface) ror2.localise();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		String ret = sayHello.sayHello(stub);
+		System.out.println(ret);
 	}
 }
