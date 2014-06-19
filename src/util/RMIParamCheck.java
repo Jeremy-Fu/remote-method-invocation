@@ -16,6 +16,17 @@ public class RMIParamCheck {
 		}
 	}
 	
+	public static Object retCheck(Object obj) {
+		Object ret = obj;
+		if ((obj instanceof Remote440) && !(obj instanceof Stub440)) {
+			RemoteObjectRef ror = Naming.getROR((Remote440)obj);
+			if (ror != null) {
+				ret = ror.localise();
+			}
+		}
+		return ret;		
+	}
+	
 	/**
 	 * Check each parameter, if the parameter is a stub with remote object 
 	 * on local, change the stub with its associate remote object

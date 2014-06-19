@@ -63,7 +63,8 @@ public class ProxyDispatcher implements Runnable{
 				
 				/* Invoke method */
 				try {
-					Object returnValue = method.invoke(remoteObj, args);
+					/* Check the return object, return associate stbu if it is an exported remote object */
+					Object returnValue = RMIParamCheck.retCheck(method.invoke(remoteObj, args));
 					/* Construct return value */
 					retMsg = new RetMessage(returnValue);
 				} catch (InvocationTargetException e) {
