@@ -29,6 +29,7 @@ public class UnicastRemoteObject440 {
 			td.start();
 		}
 		
+		pd.addRemoteObject(ror.getObjectKey(), remoteObject);
 		return (Remote440) ror.localise();	
 	}
 }
