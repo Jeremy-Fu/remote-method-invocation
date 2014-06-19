@@ -67,10 +67,13 @@ public class ProxyDispatcher implements Runnable{
 					/* Construct return value */
 					retMsg = new RetMessage(returnValue);
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-					Exception cause = new Exception(e.getCause());
-					/* Construct thrown exception */
-					retMsg = new RetMessage(cause, false);
+					Exception cause = (Exception) e.getCause();
+					if (cause instanceof RuntimeException) {
+						retMsg = new RetMessage(cause, true);
+					} else {
+						retMsg = new RetMessage(cause, false);
+					}
+
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (RuntimeException e) {
