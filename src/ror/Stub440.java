@@ -31,8 +31,7 @@ public abstract class Stub440 implements Serializable, Remote440 {
 	 * @param args array of method's parameters
 	 * @return the return value of the method to invoke, or exception if it is
 	 * 		   thrown
-	 * @throws UnknownHostException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
 	protected Object invokeMethod(String methodName, Object[] args, Class<?>[] argsType) 
 					throws UnknownHostException, IOException {
@@ -40,18 +39,14 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		
 		String inetAddr = ror.getIP();
 		int port = ror.getPort();
-		System.out.println("DEBUG:\tStub440.invokeMethod():\tdstIP=" + inetAddr + ":" + port);
 		Socket clientToServer = new Socket(inetAddr, port);
-		System.out.println("DEBUG:\tStub440.invokeMethod():\tSetup an connection...");
 		/* Send method invocation message to proxy dispatcher */
 		ObjectOutputStream objectOut = new ObjectOutputStream(clientToServer.getOutputStream());
 		/* Check and replace exported remote object with its stub */
 		RMIParamCheck.paramSendCheck(message.getArgs());	
 		objectOut.writeObject(message);
-		System.out.println("DEBUG:\tStub440.invokeMethod():\tWrite invoke message...");
 		/* read return message from proxy dispatcher */
 		ObjectInputStream objectIn = new ObjectInputStream(clientToServer.getInputStream());
-		System.out.println("DEBUG:\tStub440.invokeMethod():\tRead return message...");
 		RetMessage retMessage = null;
 		try {
 			retMessage = (RetMessage) objectIn.readObject();
@@ -64,10 +59,9 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		
 		//TODO check if exception flag is set in retMessage
 		if (retMessage.getCode() == MessageCode.EXCEPTION) {
-			
-		} else {
-			
-		}
+			Exception e = ((RetMessage)retMessage).getException();
+			throw new RuntimeException("Remote object throws exception", e);
+		} 
 		
 		return retMessage.getRet();
 	}

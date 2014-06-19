@@ -13,10 +13,9 @@ public class InvokeMessage extends Message {
 	private static final long serialVersionUID = 4488185998485866404L;
 	private RemoteObjectRef ror;
 	private String methodName;
-	private Object retValue;
 	private Object[] args;
 	private Class<?>[] argsType;
-	
+
 
 	public InvokeMessage(RemoteObjectRef ror, String methodName, Object[] args, Class<?>[] argsType) {
 		super(MessageType.QUERY, MessageOp.INVOKE);

@@ -17,8 +17,7 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 
 	@Override
 	public String getName() {
-		System.out.println("DEBUG:PersonInterface_Stub.getName()\tcalling Get name");
-		System.out.println("DEBUG:PersonInterface_Stub.getName()\tdstIP=" + super.ror.getIP() + ":" + super.ror.getPort());
+
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 	
 		String ret = null;
@@ -28,8 +27,9 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			throw new RuntimeException("Remote exception", e);
 		}
-		System.out.println("DEBUG:PersonInterface_Stub.getName()\tBefore return");
 		return ret;
 	}
 

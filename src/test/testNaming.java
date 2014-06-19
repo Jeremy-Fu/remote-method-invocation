@@ -6,7 +6,7 @@ import registry.LocateRegistry440;
 import registry.Registry440;
 
 public class testNaming {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Registry440 registry = LocateRegistry440.getRegistry("128.237.217.119", 1099);
 		SayHelloInterface sayHello_stub = null;
 		try {
