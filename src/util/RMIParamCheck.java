@@ -24,11 +24,15 @@ public class RMIParamCheck {
 	 */
 	public static void paramInvokeCheck(Object[] objs) {
 		for (int i = 0; i < objs.length; i++) {
-			if (!(objs[i] instanceof Remote440) && (objs[i] instanceof Stub440)) {
+			if (objs[i] instanceof Stub440) {
 				Remote440 remoteObj = Naming.getObject(((Stub440)objs[i]).ror);
+				System.out.print("DEBUG:\tRMIParamCheck.paramInvokeCheck():\t Found a stub\t" + objs[i].getClass().getName());
 				if (remoteObj != null) {
 					objs[i] = remoteObj;
+					System.out.print(" --> " + remoteObj.getClass().getName());
 				}
+				System.out.println();
+				
 			}
 		}		
 	}

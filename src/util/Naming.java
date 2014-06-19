@@ -49,15 +49,17 @@ public class Naming {
 	 */
 	public static Remote440 getObject(RemoteObjectRef ref) {
 		Set<Remote440> set = obj2RefTbl.keySet();
-		 Remote440 retObj = null;
+		Remote440 retObj = null;
 		for (Remote440 obj : set) {
 			RemoteObjectRef ror = obj2RefTbl.get(obj);
-			if (ref.equals(ror)) {
+			if (ref.getObjectKey().equals(ror.getObjectKey())) {
 				retObj = obj;
+				break;
 			}
 		}
 		return retObj;
 	}
+	
 	
 	public static RemoteObjectRef getROR(Remote440 remoteObject) {
 		return obj2RefTbl.get(remoteObject);
