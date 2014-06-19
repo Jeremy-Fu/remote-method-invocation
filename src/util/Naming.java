@@ -8,6 +8,12 @@ import java.util.Random;
 import ror.Remote440;
 import ror.RemoteObjectRef;
 
+/**
+ * A naming utility to name a Remote Object
+ * 
+ * @author Jeremy Fu
+ * 		   Qing Wei
+ */
 public class Naming {
 	private static long objectKeyCounter;
 	private static int port = (new Random()).nextInt(65535 - 1024) + 1024;

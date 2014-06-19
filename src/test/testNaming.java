@@ -12,11 +12,13 @@ public class testNaming {
 		try {
 			sayHello_stub = (SayHelloInterface) registry.lookup("SayHelloOnJeremyRegistry");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		PersonInterface person_stub = null;
 		person_stub = (PersonInterface) sayHello_stub.createPerson();
-		System.out.println(person_stub.getName());
+		person_stub.setName("heeh");
+		String name = person_stub.getName();
+		//System.out.println("name " + name);
+		System.out.println(sayHello_stub.sayHello(person_stub));
 	}
 }
