@@ -52,8 +52,9 @@ public class ProxyDispatcher implements Runnable{
 				}
 				System.out.println();
 			
-				/* Invoke method */
+				/* Get objects from invoke message and check type */
 				Object[] args = invokeReq.getArgs();
+				RMIParamCheck.paramInvokeCheck(args);
 				Object returnValue = method.invoke(remoteObj, args);
 				//TODO: Handle exception as well.
 				RetMessage retMsg = new RetMessage(returnValue, false);

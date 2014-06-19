@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
 import java.util.Random;
+import java.util.Set;
 
 import ror.Remote440;
 import ror.RemoteObjectRef;
@@ -37,6 +38,25 @@ public class Naming {
 		System.out.println("DEBUG:\tNaming.RemoteObjectRef[1]:\t" + remoteObject.getClass().getName() + "::" + ror.getPort());
 		obj2RefTbl.put(remoteObject, ror);
 		return ror;
+	}
+	
+	/**
+	 * Given a RemoteObjectRef ref, find the corresponding Remote Object
+	 * in naming table
+	 * 
+	 * @param ref RemoteObjectRef
+	 * @return the Remote Object associates with ref, null if not found
+	 */
+	public static Remote440 getObject(RemoteObjectRef ref) {
+		Set<Remote440> set = obj2RefTbl.keySet();
+		 Remote440 retObj = null;
+		for (Remote440 obj : set) {
+			RemoteObjectRef ror = obj2RefTbl.get(obj);
+			if (ref.equals(ror)) {
+				retObj = obj;
+			}
+		}
+		return retObj;
 	}
 	
 	public static RemoteObjectRef getROR(Remote440 remoteObject) {

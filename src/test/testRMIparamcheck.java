@@ -23,7 +23,7 @@ public class testRMIparamcheck {
 		arr[1] = new Integer(2);
 		System.out.println(arr[0].getClass().getName());
 		System.out.println(arr[1].getClass().getName());
-		RMIParamCheck.paramCheck(arr);
+		RMIParamCheck.paramSendCheck(arr);
 		System.out.println(arr[0].getClass().getName());
 		System.out.println(arr[1].getClass().getName());
 	}

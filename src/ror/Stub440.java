@@ -46,7 +46,7 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		/* Send method invocation message to proxy dispatcher */
 		ObjectOutputStream objectOut = new ObjectOutputStream(clientToServer.getOutputStream());
 		/* Check and replace exported remote object with its stub */
-		RMIParamCheck.paramCheck(message.getArgs());	
+		RMIParamCheck.paramSendCheck(message.getArgs());	
 		objectOut.writeObject(message);
 		System.out.println("DEBUG:\tStub440.invokeMethod():\tWrite invoke message...");
 		/* read return message from proxy dispatcher */

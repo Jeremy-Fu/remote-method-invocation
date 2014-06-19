@@ -5,7 +5,7 @@ import ror.RemoteObjectRef;
 import ror.Stub440;
 
 public class RMIParamCheck {
-	public static void paramCheck(Object[] objs) {
+	public static void paramSendCheck(Object[] objs) {
 		for (int i = 0; i < objs.length; i++) {
 			if ((objs[i] instanceof Remote440) && !(objs[i] instanceof Stub440)) {
 				RemoteObjectRef ror = Naming.getROR((Remote440)objs[i]);
@@ -14,5 +14,22 @@ public class RMIParamCheck {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Check each parameter, if the parameter is a stub with remote object 
+	 * on local, change the stub with its associate remote object
+	 * 
+	 * @param objs array of parameters to check
+	 */
+	public static void paramInvokeCheck(Object[] objs) {
+		for (int i = 0; i < objs.length; i++) {
+			if (!(objs[i] instanceof Remote440) && (objs[i] instanceof Stub440)) {
+				Remote440 remoteObj = Naming.getObject(((Stub440)objs[i]).ror);
+				if (remoteObj != null) {
+					objs[i] = remoteObj;
+				}
+			}
+		}		
 	}
 }
