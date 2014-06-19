@@ -24,7 +24,7 @@ public class RMIParamCheck {
 	 */
 	public static void paramInvokeCheck(Object[] objs) {
 		for (int i = 0; i < objs.length; i++) {
-			if (!(objs[i] instanceof Remote440) && (objs[i] instanceof Stub440)) {
+			if (objs[i] instanceof Stub440) {
 				Remote440 remoteObj = Naming.getObject(((Stub440)objs[i]).ror);
 				if (remoteObj != null) {
 					objs[i] = remoteObj;

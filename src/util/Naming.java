@@ -52,8 +52,9 @@ public class Naming {
 		 Remote440 retObj = null;
 		for (Remote440 obj : set) {
 			RemoteObjectRef ror = obj2RefTbl.get(obj);
-			if (ref.equals(ror)) {
+			if (ref.getObjectKey().equals(ror.getObjectKey())) {
 				retObj = obj;
+				break;
 			}
 		}
 		return retObj;
