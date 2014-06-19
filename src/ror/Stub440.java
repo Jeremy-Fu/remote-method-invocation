@@ -34,7 +34,7 @@ public abstract class Stub440 implements Serializable, Remote440 {
 	 * @throws Exception 
 	 */
 	protected Object invokeMethod(String methodName, Object[] args, Class<?>[] argsType) 
-					throws UnknownHostException, IOException {
+					throws UnknownHostException, IOException, Exception {
 		InvokeMessage message = new InvokeMessage(ror, methodName, args, argsType);
 		
 		String inetAddr = ror.getIP();
@@ -60,7 +60,11 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		//TODO check if exception flag is set in retMessage
 		if (retMessage.getCode() == MessageCode.EXCEPTION) {
 			Exception e = ((RetMessage)retMessage).getException();
-			throw new RuntimeException("Remote object throws exception", e);
+			if (((RetMessage)retMessage).isRuntimException()) {
+				throw new RuntimeException("Remote object throws runtime exception", e);
+			} else {
+				throw new Exception("Remote object throws a checked exception", e);
+			}
 		} 
 		
 		return retMessage.getRet();

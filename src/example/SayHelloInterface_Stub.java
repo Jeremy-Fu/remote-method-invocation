@@ -18,7 +18,7 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 		super(ref);
 	}
 
-	public String sayHello(PersonInterface person) {
+	public String sayHello(PersonInterface person) throws Exception{
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		
 		/* save all arguments into an array */
@@ -31,6 +31,8 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			throw e;
 		}
 		return ret;
 	}
@@ -48,6 +50,8 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return ret;

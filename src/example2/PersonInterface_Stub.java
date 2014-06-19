@@ -28,7 +28,7 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
-			throw new RuntimeException("Remote exception", e);
+			e.printStackTrace();
 		}
 		return ret;
 	}
@@ -45,6 +45,8 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 		
