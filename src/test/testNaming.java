@@ -16,7 +16,7 @@ public class testNaming {
 		}
 		PersonInterface person_stub = null;
 		person_stub = (PersonInterface) sayHello_stub.createPerson();
-		person_stub.setName("Kimm");
+		person_stub.setName("Kim");
 		String name = person_stub.getName();
 		System.out.println(sayHello_stub.sayHello(person_stub));
 	}
