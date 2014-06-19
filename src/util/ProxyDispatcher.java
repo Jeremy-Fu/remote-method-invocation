@@ -67,12 +67,19 @@ public class ProxyDispatcher implements Runnable{
 					/* Construct return value */
 					retMsg = new RetMessage(returnValue);
 				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+					Exception cause = new Exception(e.getCause());
+					/* Construct thrown exception */
+					retMsg = new RetMessage(cause, false);
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (RuntimeException e) {
+					e.printStackTrace();
 					Exception cause = new Exception(e.getCause());
 					/* Construct thrown exception */
 					retMsg = new RetMessage(cause, true);
+
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}  catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} 
 				out.writeObject(retMsg);
@@ -88,7 +95,7 @@ public class ProxyDispatcher implements Runnable{
 				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
-			}
+			} 
 		} 
  	}
 	
