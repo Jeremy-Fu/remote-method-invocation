@@ -1,9 +1,12 @@
-package ror;
+package util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Hashtable;
 import java.util.Random;
+
+import ror.Remote440;
+import ror.RemoteObjectRef;
 
 public class Naming {
 	private static long objectKeyCounter;
@@ -27,6 +30,10 @@ public class Naming {
 		RemoteObjectRef ror = new RemoteObjectRef(hostInetAddr, port, objectKey, parseRemoteInterfaceName(remoteObject.getClass()));
 		obj2RefTbl.put(remoteObject, ror);
 		return ror;
+	}
+	
+	public static RemoteObjectRef getROR(Remote440 remoteObject) {
+		return obj2RefTbl.get(remoteObject);
 	}
 	
 	public static String parseRemoteInterfaceName (Class<?> initClass) {

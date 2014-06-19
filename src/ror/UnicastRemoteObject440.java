@@ -2,6 +2,7 @@ package ror;
 
 import java.net.UnknownHostException;
 
+import util.Naming;
 import util.ProxyDispatcher;
 
 public class UnicastRemoteObject440 {

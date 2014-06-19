@@ -24,6 +24,4 @@ public class LookUpMessage extends Message {
 	public String getService() {
 		return serviceName;
 	}
-
-
 }

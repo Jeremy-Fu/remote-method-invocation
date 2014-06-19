@@ -1,7 +1,7 @@
 package test;
 
-import ror.Naming;
 import ror.UnicastRemoteObject440;
+import util.Naming;
 import example.SayHello;
 
 public class testFindInterface {
