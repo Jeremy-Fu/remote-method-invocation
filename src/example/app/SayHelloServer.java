@@ -12,10 +12,10 @@ import example.SayHelloInterface;
 public class SayHelloServer {
 	public static void main(String[] args) throws UnknownHostException {
 		SayHelloInterface sayHello = new SayHello();
-		SayHelloInterface ror = (SayHelloInterface) UnicastRemoteObject440.exportObject(sayHello, 0);
+		SayHelloInterface sayHelloStub = (SayHelloInterface) UnicastRemoteObject440.exportObject(sayHello, 0);
 		String host = InetAddress.getLocalHost().getHostName();
 		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
-		registry.rebind("SayHelloOnJeremyRegistry" ,ror);
-		System.out.println("Bind on registry");
+		registry.rebind("SayHelloOnJeremyRegistry" ,sayHelloStub);
+		System.out.println("Bind SayHello on Jeremy's registry");
 	}
 }

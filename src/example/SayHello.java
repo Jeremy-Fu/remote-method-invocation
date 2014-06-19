@@ -19,7 +19,8 @@ public class SayHello implements SayHelloInterface{
 	@Override
 	public String sayHello(PersonInterface person) {
 		//param person is an instance of PersonInterface_Stub
-		String rst = "Hi, " + person.getName() ;
+		System.out.println("DEBUG:\tSayHello.sayHello():\t" + person.getClass().getName());
+		String rst = "Hi, " + person.getName();
 		return rst;
 	}
 	
