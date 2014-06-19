@@ -35,7 +35,6 @@ public class Naming {
 		String objectKey = genObjectKey();
 		String hostInetAddr = InetAddress.getLocalHost().getHostName();
 		RemoteObjectRef ror = new RemoteObjectRef(hostInetAddr, port, objectKey, parseRemoteInterfaceName(remoteObject.getClass()));
-		System.out.println("DEBUG:\tNaming.RemoteObjectRef[1]:\t" + remoteObject.getClass().getName() + "::" + ror.getPort());
 		obj2RefTbl.put(remoteObject, ror);
 		return ror;
 	}
