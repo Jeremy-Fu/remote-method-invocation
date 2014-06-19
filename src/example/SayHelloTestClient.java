@@ -53,8 +53,12 @@ public class SayHelloTestClient {
 			e1.printStackTrace();
 			return;
 		}
-		
-		String ret = sayHelloStub.sayHello(personStub);
-		System.out.println(ret);
+		try {
+			String ret = sayHelloStub.sayHello(personStub);
+			System.out.println(ret);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 }

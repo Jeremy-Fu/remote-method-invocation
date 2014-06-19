@@ -17,9 +17,12 @@ public class SayHello implements SayHelloInterface{
 	private static final long serialVersionUID = 649136614591494580L;
 
 	@Override
-	public String sayHello(PersonInterface person) {
+	public String sayHello(PersonInterface person) throws Exception {
 		//param person is an instance of PersonInterface_Stub
-		System.out.println("DEBUG:\tSayHello.sayHello():\t" + person.getClass().getName());
+		if (person.getName().equals("Kim")) {
+			throw new Exception("Found Kim.");
+		}
+		person = null;
 		String rst = "Hi, " + person.getName();
 		return rst;
 	}

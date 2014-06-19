@@ -1,6 +1,5 @@
 package test;
 
-import ror.UnicastRemoteObject440;
 import util.Naming;
 import example.SayHello;
 
