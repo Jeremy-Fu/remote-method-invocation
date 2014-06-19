@@ -22,7 +22,6 @@ public class SayHello implements SayHelloInterface{
 		if (person.getName().equals("Kim")) {
 			throw new Exception("Found Kim.");
 		}
-		person = null;
 		String rst = "Hi, " + person.getName();
 		return rst;
 	}
@@ -38,25 +37,25 @@ public class SayHello implements SayHelloInterface{
 	public PersonInterface createPerson() {
 		PersonInterface person = new Person();
 		person.setName("Jeremy");
-		PersonInterface personStub = null;
+		PersonInterface personStub = person;
 		try {
 			personStub = (PersonInterface) UnicastRemoteObject440.exportObject(person, 0);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String host = null;
-		try {
-			host = InetAddress.getLocalHost().getHostName();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
-		registry.rebind("PersonOnJeremyRegistry" ,personStub);
-		System.out.println("Bind person on Jeremy registry");
+//		String host = null;
+//		try {
+//			host = InetAddress.getLocalHost().getHostName();
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Registry440 registry = LocateRegistry440.getRegistry(host, 1099);
+//		registry.rebind("PersonOnJeremyRegistry" ,personStub);
+//		System.out.println("Bind person on Jeremy registry");
 		
-		return personStub;
+		return person;
 	}
 
 }
