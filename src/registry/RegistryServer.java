@@ -122,10 +122,8 @@ public class RegistryServer implements Runnable {
 				out.close();
 				soc.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
