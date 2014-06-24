@@ -52,4 +52,44 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 		
 	}
 
+	@Override
+	public int getAge() {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		
+		/* save all arguments into an array */
+		Object[] args = new Object[0];
+		Class<?>[] argsType = new Class<?>[0];
+		int ret = 0;
+		try {
+			ret = (Integer)super.invokeMethod(methodName, args, argsType);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
+
+	@Override
+	public void setAge(int age) {
+		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		
+		/* save all arguments into an array */
+		Object[] args = new Object[]{age};
+		Class<?>[] argsType = new Class<?>[]{int.class};
+		try {
+			super.invokeMethod(methodName, args, argsType);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return;
+	}
+
 }
