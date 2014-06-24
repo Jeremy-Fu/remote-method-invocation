@@ -9,9 +9,13 @@ import example.person.Person;
 import example.person.PersonInterface;
 
 /**
- * test1: This pro
- * @author JeremyFu
- *
+ * test1: This program tests when parameter and return value of remote method
+ * are both primitive types. 
+ * 
+ * Server: It instantiates a Person object, exports it and rebinds it with
+ * the registry. Due to the object is referenced the by proxy dispatcher 
+ * thread, the person object won't be collected by garbage collection.
+ * 
  */
 public class test1Server {
 	public static void main(String[] args) {
