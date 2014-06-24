@@ -4,10 +4,9 @@ import java.net.UnknownHostException;
 
 import registry.LocateRegistry440;
 import registry.Registry440;
-import ror.RemoteObjectRef;
 import ror.UnicastRemoteObject440;
-import example2.Person;
-import example2.PersonInterface;
+import example.person.Person;
+import example.person.PersonInterface;
 
 public class PersonServer {
 	public static void main(String[] args) throws UnknownHostException {

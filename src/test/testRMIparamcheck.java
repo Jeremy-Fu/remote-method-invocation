@@ -2,12 +2,10 @@ package test;
 
 import java.net.UnknownHostException;
 
-import ror.Remote440;
-import ror.Stub440;
 import util.Naming;
 import util.RMIParamCheck;
-import example2.Person;
-import example2.PersonInterface;
+import example.person.Person;
+import example.person.PersonInterface;
 
 public class testRMIparamcheck {
 	public static void main(String[] args) {

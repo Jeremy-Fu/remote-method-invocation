@@ -7,8 +7,8 @@ import java.net.UnknownHostException;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.UnicastRemoteObject440;
-import example.SayHello;
-import example.SayHelloInterface;
+import example.sayhello.SayHello;
+import example.sayhello.SayHelloInterface;
 
 /**
  * This is an example to write a RMI application on the server side.

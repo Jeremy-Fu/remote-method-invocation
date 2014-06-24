@@ -6,8 +6,8 @@ import java.net.UnknownHostException;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.UnicastRemoteObject440;
-import example.SayHello;
-import example.SayHelloInterface;
+import example.sayhello.SayHello;
+import example.sayhello.SayHelloInterface;
 
 public class SayHelloServer {
 	public static void main(String[] args) throws UnknownHostException {

@@ -1,7 +1,7 @@
 package test;
 
 import util.Naming;
-import example.SayHello;
+import example.sayhello.SayHello;
 
 public class testFindInterface {
 	public static void main(String[] args) {
