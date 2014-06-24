@@ -9,5 +9,7 @@ public interface SayHelloInterface extends Remote440{
 	public String sayHello(PersonInterface person) throws Exception;
 	
 	public PersonInterface createPerson();
+	
+	public String resetPerson(PersonInterface person);
 
 }
