@@ -7,7 +7,7 @@ import registry.Registry440;
 import ror.Stub440;
 
 /**
- * test1: This program tests when parameter and return value of remote method
+ * test2: This program tests when parameter and return value of remote method
  * are both non-remote serializable object. 
  * 
  * It looks up the stub of a person object named 'PersonOnServerRegistry', 
@@ -23,7 +23,7 @@ public class test2Client {
 		PersonInterface person = null;
 		
 		/* Check the class type of the person object */
-		System.out.print("Is person a stub?  ");
+		System.out.print("Is person a stub?      ");
 		System.out.println(person instanceof Stub440);
 		try {
 			person = (PersonInterface) registry.lookup("PersonOnServerRegistry");

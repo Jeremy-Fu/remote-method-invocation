@@ -8,6 +8,15 @@ import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
 
+/**
+ * test1: This program tests when parameter and return value of remote method
+ * are both primitive types. It looks up the stub of a person
+ * object named 'PersonOnServerRegistry', sets the AGE of the remote object
+ * to the integer passed in and finally gets the age of the remote
+ * object again after the age is set. Both of the setter and getter method of
+ * the instance variable AGE are remote method invocations
+ * 
+ */
 public class test1Server {
 	public static void main(String[] args) {
 		Person person = new Person();
