@@ -7,8 +7,8 @@ import registry.Registry440;
 import ror.Stub440;
 
 /**
- * test2: This program tests when parameter and return value of remote method
- * are both non-remote serializable object. 
+ * test2: This program tests the case when parameter and return value of 
+ * remote method are both non-remote serializable object. 
  * 
  * It looks up the stub of a person object named 'PersonOnServerRegistry', 
  * sets the name of the remote object to the String parameter passed in and 
