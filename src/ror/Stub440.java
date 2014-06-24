@@ -61,7 +61,7 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		if (retMessage.getCode() == MessageCode.EXCEPTION) {
 			Exception e = ((RetMessage)retMessage).getException();
 			if (((RetMessage)retMessage).isRuntimException()) {
-				throw new RuntimeException("Remote object throws runtime exception", e);
+				throw e;
 			} else {
 				throw e;
 			}

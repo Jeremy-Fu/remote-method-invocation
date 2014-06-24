@@ -12,7 +12,7 @@ import registry.Registry440;
  * sets the name  and calls .sayHello(person) object, which will
  * throw an exception when the name of the person is set to 'Kim'
  */
-public class client5Test {
+public class test5Client {
 	public static void main(String[] args) {
 		Registry440 registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
 		SayHelloInterface sayHello = null;
