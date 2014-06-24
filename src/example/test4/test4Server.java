@@ -37,6 +37,6 @@ public class test4Server {
 		}
 		Registry440 registryStub = LocateRegistry440.getRegistry("localhost", 1099);
 		registryStub.rebind("SayHelloOnServerRegistry", sayHelloStub);
-		System.out.println("test2Server.main():\tSayHello has been bound to registry");
+		System.out.println("test4Server.main():\tSayHello has been bound to registry");
 	}
 }
