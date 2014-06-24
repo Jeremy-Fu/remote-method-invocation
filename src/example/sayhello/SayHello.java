@@ -45,4 +45,10 @@ public class SayHello implements SayHelloInterface{
 		return person;
 	}
 
+	@Override
+	public String resetPerson(PersonInterface person) {
+		person.setName("DEFAULT");
+		return person.getName();
+	}
+
 }
