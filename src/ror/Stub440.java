@@ -44,6 +44,7 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		ObjectOutputStream objectOut = new ObjectOutputStream(clientToServer.getOutputStream());
 		/* Check and replace exported remote object with its stub */
 		RMIParamCheck.paramSendCheck(message.getArgs());	
+		
 		objectOut.writeObject(message);
 		/* read return message from proxy dispatcher */
 		ObjectInputStream objectIn = new ObjectInputStream(clientToServer.getInputStream());
