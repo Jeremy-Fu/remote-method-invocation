@@ -3,9 +3,9 @@ package example.app;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.UnicastRemoteObject440;
-import example.SayHelloInterface;
-import example2.Person;
-import example2.PersonInterface;
+import example.person.Person;
+import example.person.PersonInterface;
+import example.sayhello.SayHelloInterface;
 
 public class SayHelloClient {
 	public static void main(String[] args) throws Exception {

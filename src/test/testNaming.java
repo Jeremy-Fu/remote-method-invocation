@@ -1,9 +1,9 @@
 package test;
 
-import example.SayHelloInterface;
-import example2.PersonInterface;
 import registry.LocateRegistry440;
 import registry.Registry440;
+import example.person.PersonInterface;
+import example.sayhello.SayHelloInterface;
 
 public class testNaming {
 	public static void main(String[] args) throws Exception {
