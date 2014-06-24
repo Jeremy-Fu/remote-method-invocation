@@ -8,6 +8,11 @@ import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
 
+/**
+ * test1: This pro
+ * @author JeremyFu
+ *
+ */
 public class test1Server {
 	public static void main(String[] args) {
 		Person person = new Person();
