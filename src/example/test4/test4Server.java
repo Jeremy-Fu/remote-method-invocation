@@ -16,8 +16,8 @@ import example.sayhello.SayHelloInterface;
  * the registry. Due to the object is referenced the by proxy dispatcher 
  * thread, the person object won't be collected by garbage collection.
  * 
- * Client could instantiate a Person remote object. Client could pass the non-
- * exported and exported remote objects as parameters in sayHello() method 
+ * Client instantiates a Person remote object. Client could pass both unexported 
+ * and exported remote objects as parameters in resetPerson() method 
  * respectively. The non-exported object will be passed by value as the change
  * on remote host is not seen by local host. 
  *

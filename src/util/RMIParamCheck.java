@@ -40,7 +40,6 @@ public class RMIParamCheck {
 				if (remoteObj != null) {
 					objs[i] = remoteObj;
 				}
-				
 			}
 		}		
 	}

@@ -16,7 +16,7 @@ import ror.RemoteObjectRef;
  * 		   Qing Wei
  */
 public class Naming {
-	private static long objectKeyCounter;
+	private static long objectKeyCounter = (new Random()).nextLong();
 	private static int port = (new Random()).nextInt(65535 - 1024) + 1024;
 	private static Hashtable<Remote440, RemoteObjectRef> obj2RefTbl = 
 			new Hashtable<Remote440, RemoteObjectRef>();
@@ -85,7 +85,13 @@ public class Naming {
 	}
 	
 	public static String genObjectKey() {
-		String rst = String.format("%20d", objectKeyCounter);
+		String host = null;
+		try {
+			host = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			host = "192.168.0.1";
+		}
+		String rst = String.format("%s%20d", host,objectKeyCounter);
 		objectKeyCounter++;
 		return rst;
 	}
