@@ -8,9 +8,6 @@ import example.person.PersonInterface;
 
 public class SayHello implements SayHelloInterface{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 649136614591494580L;
 
 	@Override
@@ -19,6 +16,13 @@ public class SayHello implements SayHelloInterface{
 		if (person.getName().equals("Kim")) {
 			throw new Exception("Found Kim.");
 		}
+		System.out.println("Sleep...");
+		try {
+			Thread.sleep(1000 * 3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("wake up...");
 		String rst = "Hello, " + person.getName();
 		return rst;
 	}
@@ -34,9 +38,9 @@ public class SayHello implements SayHelloInterface{
 	public PersonInterface createPerson() {
 		PersonInterface person = new Person();
 		person.setName("Jeremy");
-		PersonInterface personStub = person;
+
 		try {
-			personStub = (PersonInterface) UnicastRemoteObject440.exportObject(person, 0);
+			UnicastRemoteObject440.exportObject(person, 0);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

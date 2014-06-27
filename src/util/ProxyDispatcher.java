@@ -74,7 +74,6 @@ public class ProxyDispatcher implements Runnable{
 					} else {
 						retMsg = new RetMessage(cause, false);
 					}
-
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 				} catch (RuntimeException e) {
@@ -82,15 +81,15 @@ public class ProxyDispatcher implements Runnable{
 					Exception cause = new Exception(e.getCause());
 					/* Construct thrown exception */
 					retMsg = new RetMessage(cause, true);
-
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
-				} 
-				out.writeObject(retMsg);
+				} finally {
+					out.writeObject(retMsg);
+				}
+				
 				in.close();
 				out.close();
 				socket.close();	
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -99,7 +98,7 @@ public class ProxyDispatcher implements Runnable{
 				e.printStackTrace();
 			} catch (SecurityException e) {
 				e.printStackTrace();
-			} 
+			}
 		} 
  	}
 	
