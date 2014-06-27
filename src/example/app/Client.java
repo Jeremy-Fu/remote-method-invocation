@@ -4,19 +4,29 @@ import java.math.BigDecimal;
 
 import registry.LocateRegistry440;
 import registry.Registry440;
-import example.computePi.Compute;
+import example.computePi.ComputeInterface;
 import example.computePi.Pi;
 
 public class Client {
 	public static void main(String args[]) {
-        if (System.getSecurityManager() == null) {
-            System.setSecurityManager(new SecurityManager());
-        }
+		int precision = 1;
+		String serviceName = null;
+		String serverIp = null;
+		int serverPort  = 0;
+		if (args.length != 4) {
+			System.out.println("Usage: java example.app.Client <DecimalPrecision> <ServiceName> <ServerIp> <ServerPort>");
+			return;
+		} else {
+			precision = Integer.parseInt(args[0]);
+			serviceName = args[1];
+			serverIp = args[2];
+			serverPort = Integer.parseInt(args[3]);
+		}
+		
         try {
-            String name = "Compute";
-            Registry440 registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
-            Compute comp = (Compute) registry.lookup(name);
-            Pi task = new Pi(Integer.parseInt(args[1]));
+            Registry440 registry = LocateRegistry440.getRegistry(serverIp, serverPort);
+            ComputeInterface comp = (ComputeInterface) registry.lookup(serviceName);
+            Pi task = new Pi(precision);
             BigDecimal pi = comp.executeTask(task);
             System.out.println(pi);
         } catch (Exception e) {

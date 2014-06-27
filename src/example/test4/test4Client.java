@@ -28,21 +28,32 @@ import exception.RemoteException440;
  */
 public class test4Client {
 	public static void main(String[] args) {
+		String serviceName = null;
+		String serverIp = null;
+		int serverPort  = 0;
+		if (args.length != 3) {
+			System.out.println("Usage: java example.test4.test4Client <ServiceName> <ServerIp> <ServerPort>");
+			return;
+		} else {
+			serviceName = args[0];
+			serverIp = args[1];
+			serverPort = Integer.parseInt(args[2]);
+		}
+		
 		PersonInterface person = new Person();
 		person.setName("Chris");
-		System.out.println("DEBUG: after person.setname()");
 		person.setAge(25);
 		
 		Registry440 registryRemote = null;
 		try {
-			registryRemote = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+			registryRemote = LocateRegistry440.getRegistry(serverIp, serverPort);
 		} catch (RemoteException440 e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		SayHelloInterface sayHello = null;
 		try {
-			sayHello = (SayHelloInterface) registryRemote.lookup("SayHelloOnServerRegistry");
+			sayHello = (SayHelloInterface) registryRemote.lookup(serviceName);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -63,7 +74,6 @@ public class test4Client {
 		try {
 			registry = LocateRegistry440.getRegistry("localhost", 1099);
 		} catch (RemoteException440 e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		registry.rebind("PersonOnClientRegistry", personStub);

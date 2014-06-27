@@ -19,11 +19,22 @@ import ror.Stub440;
  */
 public class test1Client {
 	public static void main(String[] args) {
+		String serviceName = null;
+		String serverIp = null;
+		int serverPort  = 0;
+		if (args.length != 3) {
+			System.out.println("Usage: java example.test1.test1Client <ServiceName> <ServerIp> <ServerPort>");
+			return;
+		} else {
+			serviceName = args[0];
+			serverIp = args[1];
+			serverPort = Integer.parseInt(args[2]);
+		}
+		
 		Registry440 registry = null;
 		try {
-			registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+			registry = LocateRegistry440.getRegistry(serverIp, serverPort);
 		} catch (RemoteException440 e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		PersonInterface person = null;
@@ -32,7 +43,7 @@ public class test1Client {
 		System.out.print("Is person a stub?      ");
 		System.out.println(person instanceof Stub440);
 		try {
-			person = (PersonInterface) registry.lookup("PersonOnServerRegistry");
+			person = (PersonInterface) registry.lookup(serviceName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

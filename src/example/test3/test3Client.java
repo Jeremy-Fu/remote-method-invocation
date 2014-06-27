@@ -15,16 +15,27 @@ import registry.Registry440;
  */
 public class test3Client {
 	public static void main(String[] args) {
+		String serviceName = null;
+		String serverIp = null;
+		int serverPort  = 0;
+		if (args.length != 3) {
+			System.out.println("Usage: java example.test3.test3Client <ServiceName> <ServerIp> <ServerPort>");
+			return;
+		} else {
+			serviceName = args[0];
+			serverIp = args[1];
+			serverPort = Integer.parseInt(args[2]);
+		}
+		
 		Registry440 registry = null;
 		try {
-			registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+			registry = LocateRegistry440.getRegistry(serverIp, serverPort);
 		} catch (RemoteException440 e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		SayHelloInterface sayHello = null;
 		try {
-			sayHello = (SayHelloInterface) registry.lookup("SayHelloOnServerRegistry");
+			sayHello = (SayHelloInterface) registry.lookup(serviceName);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
