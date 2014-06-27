@@ -9,6 +9,11 @@ import exception.RemoteException440;
 
 public class ComputeInterface_Stub extends Stub440 implements ComputeInterface {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5854844252238492896L;
+
 	public ComputeInterface_Stub(RemoteObjectRef ror) {
 		super(ror);
 	}

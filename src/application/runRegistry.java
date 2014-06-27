@@ -7,8 +7,17 @@ import registry.RegistryServer;
  */
 public class runRegistry {
 	public static void main(String[] args) {
-		RegistryServer rs = new RegistryServer();
+		int registryPort = 1099;
+		if (args.length > 0) {
+			try {
+				registryPort = Integer.parseInt(args[0]);
+			} catch (NumberFormatException e) {
+				registryPort = 1099;
+			}
+		}
+		RegistryServer rs = new RegistryServer(registryPort);
 		Thread td = new Thread(rs);
 		td.start();
+		System.out.println("RMIregistry is running on port:" + registryPort);
 	}
 }
