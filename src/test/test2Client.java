@@ -23,7 +23,7 @@ public class test2Client {
 		String serverIp = null;
 		int serverPort  = 0;
 		if (args.length != 3) {
-			System.out.println("Usage: java example.test2.test2Client <ServiceName> <ServerIp> <ServerPort>");
+			System.out.println("Usage: java test.test2Client <ServiceName> <ServerIp> <ServerPort>");
 			return;
 		} else {
 			serviceName = args[0];

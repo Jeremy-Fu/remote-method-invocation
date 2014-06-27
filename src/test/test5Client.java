@@ -19,7 +19,7 @@ public class test5Client {
 		String serverIp = null;
 		int serverPort  = 0;
 		if (args.length != 3) {
-			System.out.println("Usage: java example.test5.test5Client <ServiceName> <ServerIp> <ServerPort>");
+			System.out.println("Usage: java test.test5Client <ServiceName> <ServerIp> <ServerPort>");
 			return;
 		} else {
 			serviceName = args[0];
