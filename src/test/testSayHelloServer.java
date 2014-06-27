@@ -17,7 +17,7 @@ public class testSayHelloServer {
 			SayHello sayHello = new SayHello();
 			SayHelloInterface sayHelloStub = (SayHelloInterface) UnicastRemoteObject440.exportObject(sayHello, 0);
 			Registry440 registryStub = LocateRegistry440.getRegistry("localhost", 1099);
-			registryStub.rebind("PersonOnServerRegistry", sayHelloStub);
+			registryStub.rebind(name , sayHelloStub);
 			System.out.println(name + " bound to registry");
 		} catch (Exception e) {
 			e.printStackTrace();

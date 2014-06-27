@@ -6,7 +6,7 @@ import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
 
-public class testRunPersonServer {
+public class testPersonServer {
 	public static void main(String[] args) {
 		if (args.length < 1) {
 			System.out.println("Usage:\t<service name>");
@@ -18,7 +18,7 @@ public class testRunPersonServer {
 			PersonInterface personStub = null;
 			personStub = (PersonInterface) UnicastRemoteObject440.exportObject(person, 0);
 			Registry440 registryStub = LocateRegistry440.getRegistry("localhost", 1099);
-			registryStub.rebind("PersonOnServerRegistry", personStub);
+			registryStub.rebind(name, personStub);
 			System.out.println(name + " bound to registry");
 		} catch (Exception e) {
 			e.printStackTrace();

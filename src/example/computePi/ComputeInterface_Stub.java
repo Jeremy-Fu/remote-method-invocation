@@ -18,6 +18,7 @@ public class ComputeInterface_Stub extends Stub440 implements ComputeInterface {
 		super(ror);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T> T executeTask(Task<T> t) throws RemoteException440 {
 		
 		String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
