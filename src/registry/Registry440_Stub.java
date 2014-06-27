@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import exception.NotBoundException440;
+import exception.RemoteException440;
 import message.ListMessage;
 import message.LookUpMessage;
 import message.Message;
@@ -34,11 +36,11 @@ public class Registry440_Stub implements Registry440{
 	}
 
 	@Override
-	public Remote440 lookup(String serviceName) throws Exception {
+	public Remote440 lookup(String serviceName) throws RemoteException440 {
 		LookUpMessage lookupMsg = new LookUpMessage(serviceName);
 		lookupMsg = (LookUpMessage) messageHandler(lookupMsg);
 		if (lookupMsg.getCode() == MessageCode.DENY) {
-			throw new Exception(serviceName + " not bound");
+			throw new NotBoundException440(serviceName + " not bound");
 		}
 		
 		return lookupMsg.getStub();

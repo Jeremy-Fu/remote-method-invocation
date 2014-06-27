@@ -19,7 +19,6 @@ public class SayHelloServer {
 		try {
 			registry = LocateRegistry440.getRegistry(host, 1099);
 		} catch (RemoteException440 e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		registry.rebind("SayHelloOnJeremyRegistry" ,sayHelloStub);

@@ -16,13 +16,13 @@ public class test6Client {
 	public static void main(String[] args) {
 		Registry440 registry = null;
 		try {
-			registry = LocateRegistry440.getRegistry("128.237.220.250", 33333);
+			registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
 		} catch (RemoteException440 e1) {
 			e1.printStackTrace();
 		}
 		SayHelloInterface sayHello = null;
 		try {
-			sayHello = (SayHelloInterface) registry.lookup("SayHelloOnServerRegistry");
+			sayHello = (SayHelloInterface) registry.lookup("SayHelloOnServerRegistr");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
