@@ -19,6 +19,13 @@ public class SayHello implements SayHelloInterface{
 		if (person.getName().equals("Kim")) {
 			throw new Exception("Found Kim.");
 		}
+		System.out.println("Sleep...");
+		try {
+			Thread.sleep(1000 * 3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("wake up...");
 		String rst = "Hello, " + person.getName();
 		return rst;
 	}
