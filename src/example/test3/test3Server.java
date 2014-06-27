@@ -7,6 +7,7 @@ import registry.Registry440;
 import ror.UnicastRemoteObject440;
 import example.sayhello.SayHello;
 import example.sayhello.SayHelloInterface;
+import exception.RemoteException440;
 
 /**
  * test3: This program tests when parameter and return value of remote method
@@ -34,7 +35,13 @@ public class test3Server {
 			System.err.println("Export remote object failed. Now exit the process.");
 			System.exit(-1);
 		}
-		Registry440 registryStub = LocateRegistry440.getRegistry("localhost", 1099);
+		Registry440 registryStub = null;
+		try {
+			registryStub = LocateRegistry440.getRegistry("localhost", 1099);
+		} catch (RemoteException440 e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		registryStub.rebind("SayHelloOnServerRegistry", sayHelloStub);
 		System.out.println("test3Server.main():\tSayHello has been bound to registry");
 	}

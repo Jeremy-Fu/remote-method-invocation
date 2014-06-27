@@ -7,15 +7,15 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import exception.RemoteException440;
+import exception.ServerException440;
 import util.RMIParamCheck;
 import message.InvokeMessage;
 import message.MessageCode;
 import message.RetMessage;
 
 public abstract class Stub440 implements Serializable, Remote440 {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1552360315883773048L;
 	public RemoteObjectRef ror;
 	
@@ -34,18 +34,23 @@ public abstract class Stub440 implements Serializable, Remote440 {
 	 * @throws Exception 
 	 */
 	protected Object invokeMethod(String methodName, Object[] args, Class<?>[] argsType) 
-					throws UnknownHostException, IOException, Exception {
+					throws UnknownHostException, IOException, RemoteException440, Exception {
 		InvokeMessage message = new InvokeMessage(ror, methodName, args, argsType);
 		
 		String inetAddr = ror.getIP();
 		int port = ror.getPort();
+		
 		Socket clientToServer = new Socket(inetAddr, port);
+		
 		/* Send method invocation message to proxy dispatcher */
 		ObjectOutputStream objectOut = new ObjectOutputStream(clientToServer.getOutputStream());
 		/* Check and replace exported remote object with its stub */
-		RMIParamCheck.paramSendCheck(message.getArgs());	
-		
-		objectOut.writeObject(message);
+		RMIParamCheck.paramSendCheck(message.getArgs());		
+		try{	
+			objectOut.writeObject(message);
+		} catch (IOException e) {	//an error accessing the socket
+			throw new ServerException440("An error occurred while sending remote message");
+		}
 		/* read return message from proxy dispatcher */
 		ObjectInputStream objectIn = new ObjectInputStream(clientToServer.getInputStream());
 		RetMessage retMessage = null;
@@ -53,18 +58,17 @@ public abstract class Stub440 implements Serializable, Remote440 {
 			retMessage = (RetMessage) objectIn.readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			throw new ServerException440("An error occurred on server side");
 		}
 		objectOut.close();
 		objectIn.close();
 		clientToServer.close();
 		
+		/* both checked and unchecked exception in RMI are thrown here */
 		if (retMessage.getCode() == MessageCode.EXCEPTION) {
 			Exception e = ((RetMessage)retMessage).getException();
-			if (((RetMessage)retMessage).isRuntimException()) {
-				throw new RuntimeException("Remote object throws runtime exception", e);
-			} else {
-				throw e;
-			}
+			throw e;	
 		} 
 		
 		return retMessage.getRet();

@@ -4,6 +4,7 @@ import registry.LocateRegistry440;
 import registry.Registry440;
 import example.person.PersonInterface;
 import example.sayhello.SayHelloInterface;
+import exception.RemoteException440;
 
 public class SayHelloTestClient {
 	public static void main(String[] args) {
@@ -33,7 +34,13 @@ public class SayHelloTestClient {
 //		person.setName("440");
 //		String ret = stub.sayHello(person);
 //		System.out.println(ret);
-		Registry440 registry = LocateRegistry440.getRegistry("localhost", 1099);
+		Registry440 registry = null;
+		try {
+			registry = LocateRegistry440.getRegistry("localhost", 1099);
+		} catch (RemoteException440 e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		PersonInterface personStub = null;
 		try {
 			personStub = (PersonInterface) registry.lookup("Person");
@@ -46,7 +53,13 @@ public class SayHelloTestClient {
 		String str = personStub.getName();
 		System.out.println(str);
 		
-		Registry440 registry2 = LocateRegistry440.getRegistry("128.237.217.119", 1099);
+		Registry440 registry2 = null;
+		try {
+			registry2 = LocateRegistry440.getRegistry("128.237.217.119", 1099);
+		} catch (RemoteException440 e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		SayHelloInterface sayHelloStub = null;
 		try {
 			sayHelloStub = (SayHelloInterface) registry2.lookup("SayHelloOnRegistry");

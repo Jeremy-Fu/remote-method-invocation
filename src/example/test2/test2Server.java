@@ -7,6 +7,7 @@ import registry.Registry440;
 import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
+import exception.RemoteException440;
 
 /**
  * test2: This program tests when parameter and return value of remote method
@@ -30,7 +31,13 @@ public class test2Server {
 			System.err.println("Export remote object failed. Now exit the process.");
 			System.exit(-1);
 		}
-		Registry440 registryStub = LocateRegistry440.getRegistry("localhost", 1099);
+		Registry440 registryStub = null;
+		try {
+			registryStub = LocateRegistry440.getRegistry("localhost", 1099);
+		} catch (RemoteException440 e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		registryStub.rebind("PersonOnServerRegistry", personStub);
 		System.out.println("test2Server.main():\tPerson has been bound to registry");
 	}
