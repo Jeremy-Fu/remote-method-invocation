@@ -1,4 +1,4 @@
-package example.test3;
+package test;
 
 import example.person.PersonInterface;
 import example.sayhello.SayHelloInterface;
@@ -7,19 +7,19 @@ import registry.LocateRegistry440;
 import registry.Registry440;
 
 /**
- * test3: tests the case in which the remote method's return value is an
- * exported remote object (the stub of the object is returned instead).
+ * test5: tests checked exception during remote method invocation
  * 
- * Client: It gets a stub of SayHelloInterface object named 'SayHelloOnServerRegistry',
- * creates a person object (remote object) and returns a stub of person object
+ * Client: creates a remote person object by calling .createPerson() method,
+ * sets the name  and calls .sayHello(person) object, which will
+ * throw an exception when the name of the person is set to 'Kim'
  */
-public class test3Client {
+public class test5Client {
 	public static void main(String[] args) {
 		String serviceName = null;
 		String serverIp = null;
 		int serverPort  = 0;
 		if (args.length != 3) {
-			System.out.println("Usage: java example.test3.test3Client <ServiceName> <ServerIp> <ServerPort>");
+			System.out.println("Usage: java example.test5.test5Client <ServiceName> <ServerIp> <ServerPort>");
 			return;
 		} else {
 			serviceName = args[0];
@@ -31,6 +31,7 @@ public class test3Client {
 		try {
 			registry = LocateRegistry440.getRegistry(serverIp, serverPort);
 		} catch (RemoteException440 e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		SayHelloInterface sayHello = null;
@@ -40,9 +41,22 @@ public class test3Client {
 			e.printStackTrace();
 		}
 		PersonInterface person = sayHello.createPerson();
-		System.out.println("Class Name of person: " + person.getClass().getName());
 		
+		/* Set name to 'Andy' */
 		person.setName("Andy");
+		try {
+			System.out.println(sayHello.sayHello(person));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		/* Set name to 'Kim' */
+		person.setName("Kim");
+		
+		/* 
+		 * The remote method sayHello(person) throws an checked exception
+		 * when the name of the person object is set to 'Kim'
+		 */
 		try {
 			System.out.println(sayHello.sayHello(person));
 		} catch (Exception e) {

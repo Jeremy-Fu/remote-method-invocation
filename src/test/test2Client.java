@@ -1,5 +1,5 @@
 
-package example.test2;
+package test;
 
 import example.person.PersonInterface;
 import exception.RemoteException440;

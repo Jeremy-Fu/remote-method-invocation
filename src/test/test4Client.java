@@ -1,4 +1,4 @@
-package example.test4;
+package test;
 
 import java.net.UnknownHostException;
 
