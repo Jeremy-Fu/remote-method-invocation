@@ -2,6 +2,7 @@
 package example.test2;
 
 import example.person.PersonInterface;
+import exception.RemoteException440;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.Stub440;
@@ -18,7 +19,13 @@ import ror.Stub440;
  */
 public class test2Client {
 	public static void main(String[] args) {
-		Registry440 registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+		Registry440 registry = null;
+		try {
+			registry = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+		} catch (RemoteException440 e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PersonInterface person = null;
 		
 		/* Check the class type of the person object */

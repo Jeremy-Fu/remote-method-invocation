@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-
+import java.net.SocketException;
+import exception.RegistryNotFoundException440;
+import exception.RemoteException440;
 import message.HandshakeMessage;
 import message.MessageOp;
 import message.MessageType;
@@ -20,7 +21,7 @@ public class LocateRegistry440 {
 	 * @param port port on which the registry accepts requests
 	 * @return a stub of the registry
 	 */
-	public static Registry440 getRegistry(String host, int port) {
+	public static Registry440 getRegistry(String host, int port) throws RemoteException440{
 		try{
 			Socket soc = new Socket(host, port);
 			ObjectOutputStream out = new ObjectOutputStream(soc.getOutputStream());
@@ -34,9 +35,8 @@ public class LocateRegistry440 {
 			} else {
 				return null;
 			}
-		}  catch (UnknownHostException e) {
-			e.printStackTrace();
-			return null;
+		}  catch (SocketException e) {
+			throw new RegistryNotFoundException440("Unknown registry");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;

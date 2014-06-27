@@ -1,5 +1,6 @@
 package test;
 
+import java.io.NotSerializableException;
 import java.net.UnknownHostException;
 
 import util.Naming;
@@ -8,7 +9,7 @@ import example.person.Person;
 import example.person.PersonInterface;
 
 public class testRMIparamcheck {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NotSerializableException {
 		Object[] arr = new Object[2];
 		PersonInterface person = new Person();
 		try {

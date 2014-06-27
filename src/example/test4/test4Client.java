@@ -8,10 +8,11 @@ import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
 import example.sayhello.SayHelloInterface;
+import exception.RemoteException440;
 
 /**
- * test4: tests two cases: a.the passed in parameter in the remote method is an
- * unexported remote object; b.the passed in parameter is an exported remote
+ * test4: tests two cases: a.the passed-in parameter in the remote method is an
+ * unexported remote object; b.the passed-in parameter is an exported remote
  * object.
  * 
  *  Client: it creates a remote object locally, passed the unexported person
@@ -29,9 +30,16 @@ public class test4Client {
 	public static void main(String[] args) {
 		PersonInterface person = new Person();
 		person.setName("Chris");
+		System.out.println("DEBUG: after person.setname()");
 		person.setAge(25);
 		
-		Registry440 registryRemote = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+		Registry440 registryRemote = null;
+		try {
+			registryRemote = LocateRegistry440.getRegistry("128.237.220.250", 1099);
+		} catch (RemoteException440 e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		SayHelloInterface sayHello = null;
 		try {
 			sayHello = (SayHelloInterface) registryRemote.lookup("SayHelloOnServerRegistry");
@@ -51,7 +59,13 @@ public class test4Client {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-		Registry440 registry = LocateRegistry440.getRegistry("localhost", 1099);
+		Registry440 registry = null;
+		try {
+			registry = LocateRegistry440.getRegistry("localhost", 1099);
+		} catch (RemoteException440 e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		registry.rebind("PersonOnClientRegistry", personStub);
 		
 		/* parameter is an exported remote object, which will be passed by reference (its stub) */
