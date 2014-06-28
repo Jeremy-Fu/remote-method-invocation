@@ -63,7 +63,7 @@ public class test4Client {
 		System.out.println("Person's name on server side: " + newName);
 		System.out.println("Person's name on client side: " + person.getName());
 		
-		System.out.println("Now exported person object");
+		System.out.println("/*------Now exported person object--------*/");
 		PersonInterface personStub = null;
 		try {
 			personStub = (PersonInterface) UnicastRemoteObject440.exportObject(person, 0);
