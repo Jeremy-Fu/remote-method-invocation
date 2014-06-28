@@ -69,6 +69,8 @@ public class test4Client {
 			personStub = (PersonInterface) UnicastRemoteObject440.exportObject(person, 0);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+		} catch (RemoteException440 e) {
+			e.printStackTrace();
 		}
 		Registry440 registry = null;
 		try {
