@@ -40,7 +40,12 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		String inetAddr = ror.getIP();
 		int port = ror.getPort();
 		
-		Socket clientToServer = new Socket(inetAddr, port);
+		Socket clientToServer = null;
+		try {
+			clientToServer = new Socket(inetAddr, port);
+		} catch (IOException e) {
+			throw new ServerException440("Cannot connect to remote object");
+		}
 		
 		/* Send method invocation message to proxy dispatcher */
 		ObjectOutputStream objectOut = new ObjectOutputStream(clientToServer.getOutputStream());
