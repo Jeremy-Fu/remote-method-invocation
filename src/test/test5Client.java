@@ -31,7 +31,6 @@ public class test5Client {
 		try {
 			registry = LocateRegistry440.getRegistry(serverIp, serverPort);
 		} catch (RemoteException440 e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		SayHelloInterface sayHello = null;
