@@ -62,4 +62,9 @@ public class RemoteObjectRef implements Serializable{
 	public String getObjectKey() {
 		return this.objectKey;
 	}
+	
+	public void setPort(int p) {
+		this.port = p;
+		return;
+	}
 }

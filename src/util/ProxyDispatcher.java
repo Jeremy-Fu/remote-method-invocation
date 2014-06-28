@@ -13,6 +13,7 @@ import java.util.Random;
 import message.InvokeMessage;
 import message.RetMessage;
 import ror.Remote440;
+import exception.PortUsedException440;
 
 
 public class ProxyDispatcher implements Runnable{
@@ -20,22 +21,23 @@ public class ProxyDispatcher implements Runnable{
 	private Hashtable<String, Object> rorTable;  //Object-Key -> RemoteObject
 	private int dispatcherPort;
 	private final boolean DEBUG = false;
+	private ServerSocket serverSoc = null;
 	
-	public ProxyDispatcher (int port) {
+	public ProxyDispatcher (int port)  throws PortUsedException440 {
 		this.rorTable = new Hashtable<String, Object>();
 		this.objectKeyCounter = (new Random()).nextLong();
 		this.dispatcherPort = port;
+		try {
+			this.serverSoc = new ServerSocket(dispatcherPort);
+		} catch (IOException e) {
+			throw new PortUsedException440("port has been used");
+		}
 	}
+	
 	
 	@Override
 	public void run () {
-		ServerSocket serverSoc = null;
-		try {
-			serverSoc = new ServerSocket(dispatcherPort);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
+
 		while (true) {
 			Socket socket;
 			ObjectInputStream in;
@@ -105,8 +107,6 @@ public class ProxyDispatcher implements Runnable{
 		} 
  	}
 	
-	
-	
 	public String genObjectKey() {
 		String rst = String.format("%20d", this.objectKeyCounter);
 		this.objectKeyCounter++;
@@ -116,5 +116,7 @@ public class ProxyDispatcher implements Runnable{
 	public void addRemoteObject(String objectKey, Remote440 remoteObj) {
 		this.rorTable.put(objectKey, remoteObj);
 	}
+	
+	
 
 }
