@@ -21,11 +21,10 @@ Our design is different from the paradigm provided in Honda’s and we choose to
 ###RMIregistry
 
 RMIregistry is a server. It maps the service name to the stub of remote object. A stub of RMIregistry is instantiated when called by static methods of LocateRegistry440 along with RMI registry host and port. The RMIregistry stub communicates with RMIregistry server to get results of requests back. The RMIregistry server accepts and handles request both from server and client side. It accepts five kinds of request:
-```
+
 * Handshake: Handshake request is used to detect the availability of RMIregistry in LocateRegistry440 class. It is reserved for further implementation of security as well. For example, a server could restrict the access availability to a set of hosts and deny requests from other hosts. Distinguished from the design of Java’s LocateRegistry, where a RMIregistry stub is instantiated while no communication occurs, in our design, the getRegistry() of LocateRegistry440 sends the Handshake message in the process of instantiating the RMIregistry stub. Some exceptions may be thrown in situations such as host is not reachable, security policy restricts the access. We believe it is more secure to check the availability of RMI registry before sends messages with essential parameters.
 * Rebind: Rebind request is to rebind the service name to the stub on RMIregistry. If the service name has been used, the corresponding stub will also be updated without warning. We leave the responsibility to users that naming service globally. The philosophy of this design is based on that RMIregistry is running on the server side and we leave the flexibility to application programmers to handle such situation.
 * Unbind: Unbind request is used to inform the RMIregistry server to delete the corresponding service name and stub information that had been registered on. Once a service is unbound, the stub of it will not be available on RMIregistry anymore. If the service requested is not available on registry, a NotBoundException will be thrown.
 * List: List request gets back all the services names registered on RMIregistry currently.
 * Lookup: A Lookup request looks for a specific service on RMIregistry server. The RMIregistry will then return the associate stub of that service back to client. If the service requested is not available on registry, a NotBoundException will be thrown.
-```
 
