@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 import ror.UnicastRemoteObject440;
 import example.person.Person;
 import example.person.PersonInterface;
+import exception.RemoteException440;
 
 public class SayHello implements SayHelloInterface{
 
@@ -35,6 +36,8 @@ public class SayHello implements SayHelloInterface{
 		try {
 			UnicastRemoteObject440.exportObject(person, 0);
 		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (RemoteException440 e) {
 			e.printStackTrace();
 		}
 		
