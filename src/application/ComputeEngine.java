@@ -3,8 +3,8 @@ package application;
 import registry.LocateRegistry440;
 import registry.Registry440;
 import ror.UnicastRemoteObject440;
-import example.computePi.Compute;
-import example.computePi.ComputeInterface;
+import example.compute.Compute;
+import example.compute.ComputeInterface;
 
 public class ComputeEngine {
 	public static void main(String[] args) {

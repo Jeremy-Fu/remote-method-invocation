@@ -61,9 +61,12 @@ public class Registry440_Stub implements Registry440{
 	}
 
 	@Override
-	public void unbind(String serviceName) {
+	public void unbind(String serviceName) throws RemoteException440 {
 		UnbindMessage unbindMsg = new UnbindMessage(serviceName);
 		unbindMsg = (UnbindMessage) messageHandler(unbindMsg);
+		if (unbindMsg.getCode() == MessageCode.DENY) {
+			throw new NotBoundException440(serviceName + " not bound");
+		}
 		return;
 	}
 	

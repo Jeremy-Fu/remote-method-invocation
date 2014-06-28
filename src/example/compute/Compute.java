@@ -1,4 +1,4 @@
-package example.computePi;
+package example.compute;
 
 
 public class Compute implements ComputeInterface {

@@ -1,4 +1,4 @@
-package example.computePi;
+package example.compute;
 
 import java.io.IOException;
 import java.net.UnknownHostException;

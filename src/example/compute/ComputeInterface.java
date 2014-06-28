@@ -1,4 +1,4 @@
-package example.computePi;
+package example.compute;
 
 import ror.Remote440;
 import exception.RemoteException440;

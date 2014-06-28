@@ -1,5 +1,6 @@
 package registry;
 
+import exception.RemoteException440;
 import ror.Remote440;
 
 public interface Registry440 {
@@ -12,7 +13,7 @@ public interface Registry440 {
 	 * @param serviceName the name for the remote reference to look up
 	 * @return RemoteObjectRef a reference to a remote object, if found
 	 */
-	public Remote440 lookup(String serviceName) throws Exception;
+	public Remote440 lookup(String serviceName) throws RemoteException440;
 	
 	/**
 	 * Returns an array of the names bound in this registry
@@ -38,6 +39,6 @@ public interface Registry440 {
 	 * 
 	 * @param serviceName the name of the binding to remove
 	 */
-	public void unbind(String serviceName); 
+	public void unbind(String serviceName) throws RemoteException440; 
 	
 }

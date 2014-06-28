@@ -1,4 +1,4 @@
-package example.computePi;
+package example.compute;
 
 public interface Task<T> {
     T execute();

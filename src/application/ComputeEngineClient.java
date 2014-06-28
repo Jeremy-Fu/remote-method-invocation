@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 import registry.LocateRegistry440;
 import registry.Registry440;
-import example.computePi.ComputeInterface;
-import example.computePi.Pi;
+import example.compute.ComputeInterface;
+import example.compute.Pi;
 
-public class Client {
+public class ComputeEngineClient {
 	public static void main(String args[]) {
 		int precision = 1;
 		String serviceName = null;
