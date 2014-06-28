@@ -20,6 +20,8 @@ public class Naming {
 	private static int port = (new Random()).nextInt(65535 - 1024) + 1024;
 	private static Hashtable<Remote440, RemoteObjectRef> obj2RefTbl = 
 			new Hashtable<Remote440, RemoteObjectRef>();
+//	private static Hashtable<Remote440, ProxyDispatcher> obj2pdTbl = 
+//			new Hashtable<Remote440, ProxyDispatcher>();
 	
 	public static RemoteObjectRef name(Remote440 remoteObject, int argPort) throws UnknownHostException {
 		
@@ -99,4 +101,12 @@ public class Naming {
 	public static boolean isNamed(Remote440 remoteObject) {
 		return obj2RefTbl.containsKey(remoteObject);
 	}
+	
+//	public static void addDispatcher(Remote440 remote, ProxyDispatcher pd) {
+//		obj2pdTbl.put(remote, pd);
+//	}
+//	
+//	public static ProxyDispatcher getDispatcher(Remote440 remote) {
+//		return obj2pdTbl.get(remote);
+//	}
 }

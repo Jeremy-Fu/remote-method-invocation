@@ -12,7 +12,7 @@ public class SayHello implements SayHelloInterface{
 
 	@Override
 	public String sayHello(PersonInterface person) throws Exception {
-		//param person is an instance of PersonInterface_Stub
+		/* param person is an instance of PersonInterface_Stub */
 		if (person.getName().equals("Kim")) {
 			throw new Exception("Found Kim.");
 		}
@@ -35,7 +35,6 @@ public class SayHello implements SayHelloInterface{
 		try {
 			UnicastRemoteObject440.exportObject(person, 0);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

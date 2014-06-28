@@ -6,10 +6,16 @@ import ror.UnicastRemoteObject440;
 import example.compute.Compute;
 import example.compute.ComputeInterface;
 
+/**
+ * A ComputeEngine serves as a server to accepts remote task request, by default
+ * it exports and rebinds a Compute service and waits for remote call
+ *
+ * Usage: java RMI440 application.ComputeEngine <service name>
+ */
 public class ComputeEngine {
 	public static void main(String[] args) {
 		if (args.length < 1) {
-			System.out.println("Usage:\t<service name>");
+			System.out.println("Usage: java RMI440 application.ComputeEngine <service name>");
 			return;
 		}
 		try {

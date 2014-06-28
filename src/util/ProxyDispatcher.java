@@ -33,8 +33,8 @@ public class ProxyDispatcher implements Runnable{
 		try {
 			serverSoc = new ServerSocket(dispatcherPort);
 		} catch (IOException e) {
-			//TODO: Throw a exception to UnicastRemoteObject
 			e.printStackTrace();
+			return;
 		}
 		while (true) {
 			Socket socket;

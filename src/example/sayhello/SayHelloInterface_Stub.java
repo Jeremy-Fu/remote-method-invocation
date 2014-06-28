@@ -9,9 +9,6 @@ import example.person.PersonInterface;
 
 public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3317375476953942584L;
 
 	public SayHelloInterface_Stub(RemoteObjectRef ref) {
@@ -55,7 +52,6 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 			e.printStackTrace();
 		}
 		return ret;
-
 	}
 
 	@Override
@@ -76,8 +72,5 @@ public class SayHelloInterface_Stub extends Stub440 implements SayHelloInterface
 			e.printStackTrace();
 		}
 		return ret;
-
 	}
-	
-	
 }
