@@ -23,6 +23,7 @@ public class RegistryServer implements Runnable {
 	private Hashtable<String, Stub440> stubTbl = 
 			new Hashtable<String, Stub440>();
 	private int port;
+	private final boolean DEBUG = false;
 	
 	public RegistryServer() {
 		this.port = 1099;
@@ -65,7 +66,9 @@ public class RegistryServer implements Runnable {
 					if (msg.getOp() == MessageOp.HANDSHAKE) {
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.OKAY);
-						System.out.println("RegistryServer.log: Receive a handshake message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("RegistryServer.log: Receive a handshake message from " + soc.getInetAddress().getHostAddress());
+						}
 					} 
 					
 					else if (msg.getOp() == MessageOp.LOOKUP) {
@@ -78,7 +81,9 @@ public class RegistryServer implements Runnable {
 							lookUpMsg.setStub(stub);
 						}
 						lookUpMsg.setType(MessageType.REPLY);
-						System.out.println("RegistryServer.log: Receive a lookup message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("RegistryServer.log: Receive a lookup message from " + soc.getInetAddress().getHostAddress());
+						}
 					} 
 					
 					else if (msg.getOp() == MessageOp.LIST) {
@@ -88,7 +93,9 @@ public class RegistryServer implements Runnable {
 						Set<String> keySet = stubTbl.keySet();
 						String[] array = (String[])keySet.toArray(new String[keySet.size()]);
 						listMsg.setServices(array);
-						System.out.println("RegistryServer.log: Receive a list message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("RegistryServer.log: Receive a list message from " + soc.getInetAddress().getHostAddress());
+						}
 					} 
 					
 					else if (msg.getOp() == MessageOp.REBIND) {
@@ -96,7 +103,9 @@ public class RegistryServer implements Runnable {
 						RegistryServer.this.stubTbl.put(rebindMsg.getService(), rebindMsg.getStub());
 						rebindMsg.setType(MessageType.REPLY);
 						rebindMsg.setCode(MessageCode.OKAY);
-						System.out.println("RegistryServer.log: Receive a rebind message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("RegistryServer.log: Receive a rebind message from " + soc.getInetAddress().getHostAddress());
+						}
 					} 
 					
 					else if (msg.getOp() == MessageOp.UNBIND) {
@@ -104,17 +113,23 @@ public class RegistryServer implements Runnable {
 						RegistryServer.this.stubTbl.remove(unbindMsg.getService());
 						unbindMsg.setType(MessageType.REPLY);
 						unbindMsg.setCode(MessageCode.OKAY);
-						System.out.println("log: Receive an unbind message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("log: Receive an unbind message from " + soc.getInetAddress().getHostAddress());
+						}
 					} else{
 						msg.setType(MessageType.REPLY);
 						msg.setCode(MessageCode.DENY);
-						System.out.println("RegistryServer.log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
+						if (DEBUG) {
+							System.out.println("RegistryServer.log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
+						}
 					}
 					
 				} else {
 					msg.setType(MessageType.REPLY);
 					msg.setCode(MessageCode.DENY);
-					System.out.println("log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
+					if (DEBUG) {
+						System.out.println("log: Receive an unknown message from " + soc.getInetAddress().getHostAddress());
+					}
 				}
 				
 				out.writeObject(msg);

@@ -19,6 +19,7 @@ public class ProxyDispatcher implements Runnable{
 	private long objectKeyCounter;
 	private Hashtable<String, Object> rorTable;  //Object-Key -> RemoteObject
 	private int dispatcherPort;
+	private final boolean DEBUG = false;
 	
 	public ProxyDispatcher (int port) {
 		this.rorTable = new Hashtable<String, Object>();
@@ -54,7 +55,9 @@ public class ProxyDispatcher implements Runnable{
 				/* Obtain the method to be invoked */
 				Class<?>[] argsType = invokeReq.getArgsType();
 				Method method = remoteObj.getClass().getMethod(invokeReq.getMethodName(), argsType);
-				System.out.println("ProxyDispatcher.run():\tInvoke " + remoteObj.getClass().getName() + "." + method.getName()+"()");
+				if (DEBUG) {
+					System.out.println("ProxyDispatcher.run():\tInvoke " + remoteObj.getClass().getName() + "." + method.getName()+"()");
+				}
 				
 				/* Get objects from invoke message and check type */
 				Object[] args = invokeReq.getArgs();
