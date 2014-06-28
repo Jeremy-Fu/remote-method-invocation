@@ -16,6 +16,17 @@ import message.RebindMessage;
 import message.UnbindMessage;
 import ror.Remote440;
 
+/**
+ * A registry stub which provides functions to communicate with a RMI registry
+ * host and local host. The functions currently provided are:
+ * 		a. lookup: looks up a service given its name on registry host
+ * 		b. list: get a list of names of all current registered services on
+ * 				 RMI registry
+ * 		c. rebind: bind a remote object's stub with associate service name
+ * 				   on RMI registry
+ * 		d. unbind: delete the entry of a service given its name on RMI registry
+ *
+ */
 public class Registry440_Stub implements Registry440{
 	private String host;
 	private int port;
@@ -73,6 +84,7 @@ public class Registry440_Stub implements Registry440{
 	/**
 	 *  Communication module for registry stub to send
 	 *  and receive message between local and RMIregistry
+	 *  
 	 *  @param Message the message sent to RMIregistry
 	 *  @return Message the message received from RMIregistry
 	 *  which contains invocation result or exception.

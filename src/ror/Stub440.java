@@ -78,5 +78,4 @@ public abstract class Stub440 implements Serializable, Remote440 {
 		
 		return retMessage.getRet();
 	}
-	
 }

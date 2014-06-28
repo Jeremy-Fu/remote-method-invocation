@@ -18,6 +18,15 @@ import message.RebindMessage;
 import message.UnbindMessage;
 import ror.Stub440;
 
+/**
+ * A runnable class serves as a registry server. After it is stared by a
+ * thread, it listens on a specific port for incoming requests and handles them
+ * correspondingly. By default it just supports 4 queries:
+ * 		a. lookup: Look up a specific service on rmi registry.
+ * 		b. list: Return a list of all the current registered services' names. 
+ *		c. rebind: Rebind a remote object's stub with its service name.
+ *		d. unbind: Deregister the entry of a specific service name on registry.
+ */
 
 public class RegistryServer implements Runnable {
 	private Hashtable<String, Stub440> stubTbl = 

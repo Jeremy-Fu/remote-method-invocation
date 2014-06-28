@@ -7,6 +7,14 @@ import registry.Registry440;
 import example.compute.ComputeInterface;
 import example.compute.Pi;
 
+/**
+ * A ComputeEngineClient serves as a client to get incoming request to compute
+ * PI till a given precision. It takes in arguments from command line and sends
+ * a remote request along with a task object to the computation provider.
+ * 
+ * Usage: java RMI440 example.app.Client <DecimalPrecision> <ServiceName> <ServerIp> <ServerPort>
+ *
+ */
 public class ComputeEngineClient {
 	public static void main(String args[]) {
 		int precision = 1;
@@ -14,7 +22,7 @@ public class ComputeEngineClient {
 		String serverIp = null;
 		int serverPort  = 0;
 		if (args.length != 4) {
-			System.out.println("Usage: java example.app.Client <DecimalPrecision> <ServiceName> <ServerIp> <ServerPort>");
+			System.out.println("Usage: java RMI440 example.application.Client <DecimalPrecision> <ServiceName> <ServerIp> <ServerPort>");
 			return;
 		} else {
 			precision = Integer.parseInt(args[0]);

@@ -12,6 +12,12 @@ import message.HandshakeMessage;
 import message.MessageOp;
 import message.MessageType;
 
+/**
+ * Provides a static method getRegistry to get the rmi registry's local stub,
+ * it will communicate with the rmi registry host with HANDSHAKE message to
+ * ensure the existence of registry
+ *
+ */
 public class LocateRegistry440 { 
     
 	/**

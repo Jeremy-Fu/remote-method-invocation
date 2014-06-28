@@ -12,7 +12,6 @@ public class PersonInterface_Stub extends Stub440 implements PersonInterface{
 
 	public PersonInterface_Stub(RemoteObjectRef ref) {
 		super(ref);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

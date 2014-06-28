@@ -7,6 +7,21 @@ import ror.Remote440;
 import ror.RemoteObjectRef;
 import ror.Stub440;
 
+/**
+ * This class provides functions to guarantee that the type of objects passed
+ * between hosts during remote method invocation are valid.
+ * 
+ * It checks a remote method's parameters and its return value:
+ * 1. Parameter: It throws an exception if the parameter is not serializable
+ * 				 before sending to remote object's host
+ * 
+ * 				 It also checks the parameter on remote object's host, if the
+ * 				 parameter is a remote object which is exported on local host,
+ * 				 it replaces the stub with the remote object
+ * 
+ * 2. Return object: 
+ *
+ */
 public class RMIParamCheck {
 	public static void paramSendCheck(Object[] objs) throws NotSerializableException {
 		for (int i = 0; i < objs.length; i++) {

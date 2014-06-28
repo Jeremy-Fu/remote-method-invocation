@@ -3,8 +3,11 @@ package ror;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
-
-
+/**
+ * An object of this class is instantiated when a remote object is instantiated.
+ * It saves the basic information of the remote object.
+ *
+ */
 public class RemoteObjectRef implements Serializable{
 	private static final long serialVersionUID = -3426999726929419480L;
 	private String ipAddr;
