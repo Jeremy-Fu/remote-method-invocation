@@ -6,6 +6,8 @@ import registry.RegistryServer;
  * run a RMIregistry
  */
 public class runRegistry {
+	private static final boolean DEBUG = false;
+	
 	public static void main(String[] args) {
 		int registryPort = 1099;
 		if (args.length > 0) {
@@ -18,6 +20,8 @@ public class runRegistry {
 		RegistryServer rs = new RegistryServer(registryPort);
 		Thread td = new Thread(rs);
 		td.start();
-		System.out.println("RMIregistry is running on port:" + registryPort);
+		if (DEBUG) {
+			System.out.println("RMIregistry is running on port:" + registryPort);
+		}
 	}
 }
