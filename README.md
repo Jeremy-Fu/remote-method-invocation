@@ -15,8 +15,6 @@ A remote interface which extends the Remote440 interface is required. The remote
 
 In our design, once a remote object is exported, it is registered on a proxy dispatcher that listens for incoming invocations and distributes the invocations to different exported remote objects on the given listening port. And the stub also implements the same interface as remote object implements which ensures the client can call such methods remotely. But as a stub, it doesn’t perform the function. Instead, it marshalls the parameters, sends the invocation to the remote host and unmarshalls the return value. 
 
-Our design is different from the paradigm provided in Honda’s and we choose to emulate how Java.rmi packages provide to application programmers. This is because under Java’s paradigm, it provides more flexibility. For example, application programmers can decide whether and/or when to export a remote object. And it is more flexible to manage the remote objects as well. 
-
 ##Components
 ###RMIregistry
 
@@ -89,7 +87,7 @@ Our framework also handled several common exceptions in RMI with our customized 
 
 ###Garbage Collector
 
-Due to the limits of time and resources, we are unable to collect the remote object once it is no longer referenced remotely. In order to achieve this, we need a counter to track how many references both remotely and locally pointing to the remote object. And Java accomplishes this with JVM. Due to the fact that we are unable to keep track of the number of references pointing to the object, program which runs a remote object will not end, which leads to terminating the program manually by ctrl+c.
+Due to the limits of resources, we are unable to collect the remote object once it is no longer referenced remotely. In order to achieve this, we need a counter to track how many references both remotely and locally pointing to the remote object. And Java accomplishes this within JVM. Due to the fact that we are unable to keep track of the number of references pointing to the object, remote object will not be collected automatically.
 
 ###Parameter Check
 
